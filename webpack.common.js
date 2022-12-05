@@ -11,20 +11,22 @@ module.exports = {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
+    assetModuleFilename: "icons/[name].[ext]"
   },
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-          },
-        ],
+        test: /\.(css|s[ac]ss)$/,
+        use: ["style-loader", "css-loader", "sass-loader"]
       },
+      {
+        test: /\.(jpg|jpeg|gif|png|svg)$/,
+        type: "asset/resource"
+      },
+      {
+        test: /\.json$/,
+        type: "json"
+      }
     ],
   },
   plugins: [
@@ -41,4 +43,11 @@ module.exports = {
       ],
     }),
   ],
+  resolve: {
+    alias: {
+      "@styles": path.resolve(__dirname, "src/styles"),
+      "@scss": path.resolve(__dirname, "src/styles/scss"),
+      "@images": path.resolve(__dirname, "public/images"),
+    }
+  }
 };

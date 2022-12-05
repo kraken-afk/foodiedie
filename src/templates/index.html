@@ -1,17 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  
-  <title>Restaurant Apps Starter Project</title>
-</head>
-<body>
-  <h1>Restaurant Apps Starter Project</h1>
-  <p>Hallo coders! Anda berhasil menjalankan starter project.</p>
-  <p>Jangan lupa untuk menggunakan salah satu gambar yang berada pada ./images/heros sebagai background hero elemen</p>
-  <img src="./images/heros/hero-image_1.jpg" width="450" alt="">
-  <img src="./images/heros/hero-image_2.jpg" width="450" alt="">
-  <img src="./images/heros/hero-image_3.jpg" width="450" alt="">
-  <img src="./images/heros/hero-image_4.jpg" width="450" alt="">
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="theme-color" content="#020202" />
+    <title>Foodiedie</title>
+  </head>
+
+  <body>
+    <a autofocus tabindex="0" id="skipcontent" class="screan-reader-skip-content"
+      aria-label=" For skipping content, press tab to go to the title, or press enter to go to the restaurant list"></a>
+    <header class="header">
+      <h1 class="header__title" tabindex="0">
+        <span>Eat</span>
+        <span>healthy</span>
+      </h1>
+      <a class="header__link" href="#explore">Explore Restaurant</a>
+    </header>
+    <nav-bar></nav-bar>
+    <main class="main">
+      <article class="main__description" id="main-article" tabindex="0">
+        <h2 id="explore" class="main__title" aria-label="Healthy Restaurant's Nearby,">Healthy Restaurant's Nearby</h2>
+        <p class="main__paragraph">Healthy food is important for our body, so we have list of restaurant's that provide healthy food, placed near your area.</p>
+      </article>
+      <restaurant-list id="restaurant-list"></restaurant-list>
+    </main>
+    <footer-element></footer-element>
+  </body>
 </html>
