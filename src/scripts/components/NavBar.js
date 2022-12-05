@@ -5,6 +5,15 @@ import heartSvg from "../../public/images/bx-heart.svg";
 import meSvg from "../../public/images/bx-ghost.svg";
 
 class NavBar extends LitElement {
+  constructor() {
+    super();
+    this.menuBtnStatus = false;
+  }
+
+  static properties = {
+    menuBtnStatus: {type: Boolean}
+  }
+
   createRenderRoot() {
     return this;
   }
@@ -17,14 +26,19 @@ class NavBar extends LitElement {
         <img width="32" src=${svgLeaf} alt="" />
       </span>
       </a>
-      <div @click=${this.menuBtnClickHandler} class="nav__menu-btn">
+      <div @click=${this.menuBtnClickHandler} @keydown=${this.keydownHandler} tabindex="0" class="nav__menu-btn" aria-label="menu button, ${this.menuBtnStatus ? "opened" : "closed"}, click enter to ${!this.menuBtnStatus ? "open" : "close"} ${this.menuBtnStatus ? "and click tab for navigation" : ""}">
           <div class="nav__menu-btn__line"></div>
           <div class="nav__menu-btn__line"></div>
       </div>
       <div class="nav__list">
         <a href="./" class="nav__item"><img src=${homeSvg} alt="" /> Home</a>
         <a href="#" class="nav__item"><img src=${heartSvg} alt="" /> Favorite</a>
-        <a href="https://github.com/kraken-afk" target="_blank" class="nav__item"><img src=${meSvg} alt="" /> About Us</a>
+        <a @keydown=${(event) => {
+          if (event.key === "Tab") {
+            document.querySelector(".nav__menu-btn").click();
+            this.menuBtnStatus = false;
+          }
+        }} href="https://github.com/kraken-afk" target="_blank" class="nav__item"><img src=${meSvg} alt="" /> About Us</a>
       </div>
     </nav>
     `;
@@ -53,6 +67,13 @@ class NavBar extends LitElement {
       document.body.removeAttribute("style");
     }
     event.stopPropagation();
+  }
+
+  keydownHandler(event) {
+    if (event.key === "Enter") {
+      event.target.click();
+      this.menuBtnStatus = !this.menuBtnStatus;
+    };
   }
 }
 
