@@ -34,6 +34,9 @@ class RestaurantCard extends LitElement {
     document.body.insertBefore(modal, document.body.firstChild);
     document.body.style.overflow = "hidden";
 
+    window["latestClickEvent"] = event.target;
+
+    setTimeout(() => document.querySelector(".modal__button").focus(), 0);
   }
 
   render() {

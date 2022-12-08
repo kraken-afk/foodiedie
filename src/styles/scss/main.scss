@@ -402,7 +402,7 @@ $touch-hover-transition: all .15s ease-out;
   top: 80px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 9;
+  z-index: 11;
   padding: 1rem;
 
   border-radius: 8px;
@@ -553,7 +553,7 @@ div.blured {
 }
 
 .screen-reader-skip-content {
-  width: 100px;
+  width: max-content;
   position: absolute;
   top: -50%;
   left: 0;

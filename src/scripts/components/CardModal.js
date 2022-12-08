@@ -32,6 +32,7 @@ class CardModal extends LitElement {
       e.classList.add("exit");
     });
     document.body.removeAttribute("style");
+    setTimeout(() => window["latestClickEvent"].focus(), 0);
   }
 
   render() {
@@ -50,7 +51,12 @@ class CardModal extends LitElement {
         </div>
       </span>
       <p class="modal__paragraph">${description}</p>
-      <button @click=${this.closeButtonHandler} class="modal__button">close</button>
+      <button tabindex="0" @click=${this.closeButtonHandler} class="modal__button"
+      @keydown=${(event) => {
+        if (!event.key === "Tab") return;
+        this.closeButtonHandler();
+      }}
+      >close</button>
     </div>
     `;
   }

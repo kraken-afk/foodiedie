@@ -35,7 +35,7 @@ class NavBar extends LitElement {
         <a href="#" class="nav__item"><img src=${heartSvg} alt="" /> Favorite</a>
         <a @keydown=${(event) => {
           if (event.key === "Tab") {
-            document.querySelector(".nav__menu-btn").click();
+            if (event.target.parentElement.classList.contains("active")) document.querySelector(".nav__menu-btn").click();
             this.menuBtnStatus = false;
           }
         }} href="https://github.com/kraken-afk" target="_blank" class="nav__item"><img src=${meSvg} alt="" /> About Us</a>
