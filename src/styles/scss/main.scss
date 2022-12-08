@@ -553,8 +553,17 @@ div.blured {
 }
 
 .screen-reader-skip-content {
+  width: 100px;
   position: absolute;
-  top: -50%
+  top: -50%;
+  left: 0;
+  z-index: 100;
+  background-color: salmon;
+  font-size: clamp(1rem, 5vw, 1.5rem);
+
+  &:focus {
+    top: 0;
+  }
 }
 
 

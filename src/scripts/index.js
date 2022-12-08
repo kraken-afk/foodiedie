@@ -3,9 +3,3 @@ import "./components/NavBar";
 import "./components/RestaurantsList";
 import "./components/Footer";
 import "@scss/main.scss";
-
-const skipContentAnchor = document.getElementById("skipcontent");
-
-skipContentAnchor.addEventListener("keydown", function(event) {
-  if (event.key === "Enter") window.location.assign("#main-article");  
-})
