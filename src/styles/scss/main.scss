@@ -26,7 +26,7 @@ html {
 body {
   font-family: $font-primary;
   overflow-x: hidden;
-  transition: background-color 500ms ease-in, color 500 ease-in;
+  transition: background-color 500ms ease-in-out, color 1000ms ease-in-out;
 }
 
 img {
@@ -429,7 +429,7 @@ $touch-hover-transition: all .2s ease-out;
     align-items: center;
     justify-content: center;
     flex-basis: 20%;
-    font-size: .6rem;
+    font-size: .8rem;
 
     & img {
       margin-right: 5px;
