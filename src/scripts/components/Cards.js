@@ -1,5 +1,4 @@
 import { html, LitElement } from 'lit';
-import './CardModal';
 import mapSvg from '../../public/images/bx-map.svg';
 import starSvg from '../../public/images/bxs-star.svg';
 import { PICTURE_SMALL_ID } from '../global/config';

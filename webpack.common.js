@@ -39,10 +39,14 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: path.resolve(__dirname, 'src/public/'),
+          from: path.resolve(__dirname, 'src/public/icons'),
+          to: path.resolve(__dirname, 'dist/icons'),
+        },
+        {
+          from: path.resolve(__dirname, 'src/public'),
           to: path.resolve(__dirname, 'dist/'),
           globOptions: {
-            ignore: ['src/public/images/'],
+            ignore: [path.resolve(__dirname, 'src/public/heros')],
           },
         },
       ],
