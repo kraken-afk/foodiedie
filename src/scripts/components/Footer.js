@@ -1,8 +1,8 @@
-import { LitElement, html } from "lit";
+import { LitElement, html } from 'lit';
 
-class Footer extends LitElement{
-  createRenderRoot() {return this}
-  
+class Footer extends LitElement {
+  createRenderRoot() { return this; }
+
   render() {
     return html`
       <footer class="footer" tabindex="0">
@@ -12,4 +12,4 @@ class Footer extends LitElement{
   }
 }
 
-customElements.define("footer-element", Footer);
+customElements.define('footer-element', Footer);
