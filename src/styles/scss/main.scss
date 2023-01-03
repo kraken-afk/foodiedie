@@ -34,7 +34,7 @@ img {
 }
 
 $touch-target-padding: .5rem;
-$touch-hover-transition: all .15s ease-out;
+$touch-hover-transition: all .2s ease-out;
 
 /* navbar */
 .nav {
@@ -52,6 +52,8 @@ $touch-hover-transition: all .15s ease-out;
 
   &--light {
     background-color: $cornsilk;
+    background-color: $cornsilkTransparent;
+    backdrop-filter: blur(4px);
   }
 
   &--dark {
@@ -101,7 +103,6 @@ $touch-hover-transition: all .15s ease-out;
 
     &:hover {
       background-color: $pale-spring-bud;
-      transform: scale(.95);
     }
 
     &:focus {
@@ -241,7 +242,6 @@ $touch-hover-transition: all .15s ease-out;
     transition: $touch-hover-transition;
 
     &:hover {
-      scale: .95;
       background-color: $pale-spring-bud;
     }
   }
@@ -280,16 +280,15 @@ $touch-hover-transition: all .15s ease-out;
 
 .list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(315px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1rem
 }
 
 .card {
-  max-width: 330px;
-  min-height: 500px;
+  max-width: 280px;
 
   margin-inline: auto;
-  margin-bottom: 4rem;
+  margin-bottom: 1.5rem;
   padding: 1rem;
 
   display: flex;
@@ -304,7 +303,7 @@ $touch-hover-transition: all .15s ease-out;
     border-radius: 6px;
 
     & > img {
-      height: Min(50vw, 250px);
+      height: Min(50vw, 180px);
       object-fit: cover;
       object-position: center;
       margin-inline: auto;
@@ -326,6 +325,7 @@ $touch-hover-transition: all .15s ease-out;
       font-family: $font-secondary;
       color: $seagreen;
       flex-basis: 80%;
+      cursor: help;
     }
   }
 
@@ -371,138 +371,21 @@ $touch-hover-transition: all .15s ease-out;
     border-radius: 8px;
     background-color: $pale-spring-bud;
     padding: 10px 25px;
-    margin-top: 1.5rem;
-
     font-family: $font-primary;
     font-size: 1rem;
 
-    align-self: flex-end;
+    margin-top: 2rem;
 
     transition: $touch-hover-transition;
     cursor: pointer;
 
     &:hover {
+      opacity: .7;
+    }
+
+    &:active {
       scale: .95;
-      opacity: .95;
-    }
-
-  }
-}
-
-.modal {
-  display: flex;
-  align-items: center;
-  // max-width: 1200px;
-
-  width: 90vw;
-  height: 70vh;
-
-  position: fixed;
-  top: 80px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 11;
-  padding: 1rem;
-
-  border-radius: 8px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, .2);
-
-  background: $pale-spring-bud-2;
-  scale: .8;
-  transform-origin: center;
-  opacity: 0;
-
-  animation: pop-in .15s cubic-bezier(0.175, 0.885, 0.32, 1.275) 100ms forwards;
-
-  &.exit {
-    opacity: 1;
-    scale: 1;
-    animation: pop-out .3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-  }
-
-  &__img {
-    flex-basis: 30%;
-    height: 100%;
-    background-position: center;
-    background-size: cover;
-    border-radius: 6px;
-    margin-right: 1rem;
-  }
-
-  &__description {
-    flex-basis: 70%;
-    display: flex;
-    flex-direction: column;
-
-    &::after {
-      content: "scroll";
-      font-family: Georgia, 'Times New Roman', Times, serif;
-      position: absolute;
-      bottom: 7%;
-      opacity: .5;
-    }
-  }
-
-  &__status {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1.5rem;
-
-    & div {
-      display: flex;
-      align-items: center;
-    }
-
-    & span {
-      display: flex;
-      align-items: center;
-      margin-right: 1rem;
-
-      & img {
-        margin-right: 5px;
-      }
-    }
-  }
-
-  &__title {
-    font-size: 1.5rem;
-    font-family: $font-secondary;
-    color: $seagreen;
-  }
-
-  &__paragraph {
-    width: 100%;
-    height: 300px;
-    overflow-x: hidden;
-    overflow-y: auto;
-
-    &::first-letter {
-      font-family: 'Times New Roman', Times, serif;
-      margin-left: 2rem;
-      font-size: 1.5rem;
-      font-weight: 700;
-    }
-  }
-
-  &__button {
-    border: none;
-    border-radius: 8px;
-    background-color: $pale-spring-bud;
-    padding: 10px 25px;
-    margin-top: 1rem;
-
-    font-family: $font-primary;
-    font-size: 1rem;
-
-    align-self: flex-end;
-
-    transition: $touch-hover-transition;
-    cursor: pointer;
-
-    &:hover {
-      scale: .95;
-      opacity: .95;
+      opacity: .7;
     }
 
   }
@@ -529,6 +412,13 @@ $touch-hover-transition: all .15s ease-out;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.truncate-one {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
   overflow: hidden;
 }
 
@@ -597,11 +487,9 @@ div.blured {
       background-color: $cornsilk;
       text-align: center;
       border-radius: 0 0 10px 10px;
-      // clip-path: circle(0% at 83% 0);
       transition: .25s ease-out;
 
       &.active {
-        // clip-path: circle(150% at 83% 0);
         height: 100vh;
         visibility: visible;
       }

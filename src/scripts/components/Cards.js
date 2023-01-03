@@ -9,20 +9,8 @@ export default class RestaurantCard extends LitElement {
     this.code = code ?? null;
   }
 
-  readMoreClickHanlder(event) {
-    const modal = document.createElement('card-modal');
-    const blur = document.createElement('div');
-
-    blur.setAttribute('class', 'blured');
-    modal.setAttribute('code', this.code);
-
-    document.body.insertBefore(blur, document.body.firstChild);
-    document.body.insertBefore(modal, document.body.firstChild);
-    document.body.style.overflow = 'hidden';
-
-    window.latestClickEvent = event.target;
-
-    setTimeout(() => document.querySelector('.modal__button').focus(), 0);
+  readMoreClickHanlder() {
+    alert('click more');
   }
 
   render() {
@@ -39,7 +27,7 @@ export default class RestaurantCard extends LitElement {
         </figure>
         <article class="card__description">
           <div class="card__header">
-            <h3>${name}</h3>
+            <h3 class="truncate-one" title="${name}">${name}</h3>
             <span aria-label=${`placed at ${city},`} class="card__city"> <img width="18" src=${mapSvg} alt="" /> ${city}</span>
           </div>
           <p class="truncate">${description}</p>
