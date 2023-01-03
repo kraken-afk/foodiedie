@@ -191,7 +191,6 @@ $touch-hover-transition: all .2s ease-out;
 
     &:hover {
       background-color: var(--header-secondary);
-
     }
 
     &:focus {
@@ -215,6 +214,7 @@ $touch-hover-transition: all .2s ease-out;
       position: absolute;
       bottom: 15%;
       left: 50%;
+      transform: translateX(-50%);
       transition: $touch-hover-transition;
     }
 
@@ -374,8 +374,6 @@ $touch-hover-transition: all .2s ease-out;
 }
 
 .card {
-  max-width: 280px;
-
   margin-inline: auto;
   margin-bottom: 1.5rem;
   padding: 1rem;
@@ -432,7 +430,7 @@ $touch-hover-transition: all .2s ease-out;
     font-size: .8rem;
 
     & img {
-      margin-right: 5px;
+      margin-right: 1px;
       scale: .95;
     }
   }
@@ -669,30 +667,6 @@ body.dark .card__city {
       }
     }
   }
-
-  .modal {
-    flex-direction: column;
-    height: 75%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-
-    &__img {
-      flex-basis: 40%;
-      width: 100%;
-      height: 400px;
-      margin: 0;
-    }
-
-    &__description {
-      flex-basis: 60%;
-      height: calc(100% - 300px);
-    }
-
-    &__status {
-      margin-top: .8rem;
-    }
-  }
-
 }
 
 
@@ -710,6 +684,16 @@ body.dark .card__city {
 
     &__title {
       font-size: clamp(2rem, 15vw, 4rem);
+    }
+  }
+
+  .card {
+    max-width: 85vw;
+
+    &__img {
+      & > img {
+        height: 50vw;
+      }
     }
   }
 }

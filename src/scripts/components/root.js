@@ -1,4 +1,5 @@
 import { LitElement } from 'lit';
+import theme from '../utils/theme';
 import HomeComponent from './Home';
 
 class RootComponent extends LitElement {
@@ -13,6 +14,11 @@ class RootComponent extends LitElement {
   }
 
   createRenderRoot() { return this; }
+
+  connectedCallback() {
+    super.connectedCallback();
+    theme.init();
+  }
 
   render() {
     return this.currentRoute.render();
