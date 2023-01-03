@@ -1,26 +1,13 @@
-import { LitElement, html } from 'lit';
+import { html, LitElement } from 'lit';
 import './CardModal';
 import mapSvg from '../../public/images/bx-map.svg';
 import starSvg from '../../public/images/bxs-star.svg';
-import data from '../../DATA.json';
+import { PICTURE_SMALL_ID } from '../global/config';
 
-class RestaurantCard extends LitElement {
-  constructor() {
+export default class RestaurantCard extends LitElement {
+  constructor(code) {
     super();
-    this.code = this.getAttribute('code') ?? null;
-  }
-
-  static get properties() {
-    return {
-      code: { type: String, attribute: true },
-    };
-  }
-
-  createRenderRoot() { return this; }
-
-  get data() {
-    const { restaurants } = data;
-    return restaurants.find((e) => e.id === this.code);
+    this.code = code ?? null;
   }
 
   readMoreClickHanlder(event) {
@@ -43,12 +30,12 @@ class RestaurantCard extends LitElement {
     if (!this.code) throw new TypeError('`code` attribute cannot be empty');
     const {
       name, description, city, pictureId: source, rating,
-    } = this.data;
+    } = this.code;
 
     return html`
       <div class="card" tabindex="0">
         <figure class="card__img">
-          <img src=${source} alt="${name} image," />
+          <img draggable="false" src=${PICTURE_SMALL_ID + source} alt="${name} image," />
           <span aria-label=${`rating: ${rating} star,`} class="card__rating"> <img width="18" src=${starSvg} alt="" /> ${rating}</span>
         </figure>
         <article class="card__description">

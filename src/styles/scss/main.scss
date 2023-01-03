@@ -280,32 +280,31 @@ $touch-hover-transition: all .15s ease-out;
 
 .list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(315px, 1fr));
   gap: 1rem
 }
 
 .card {
-  max-width: 800px;
+  max-width: 330px;
   min-height: 500px;
 
   margin-inline: auto;
   margin-bottom: 4rem;
   padding: 1rem;
-  padding-bottom: 4rem;
 
   display: flex;
   flex-direction: column;
   background-color: $pale-spring-bud-2;
   border-radius: 8px;
 
-
   &__img {
     overflow: hidden;
     position: relative;
     width: 100%;
-    
+    border-radius: 6px;
+
     & > img {
-      height: 300px;
+      height: Min(50vw, 250px);
       object-fit: cover;
       object-position: center;
       margin-inline: auto;

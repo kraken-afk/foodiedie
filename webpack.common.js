@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -12,22 +13,22 @@ module.exports = {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
-    assetModuleFilename: "icons/[name].[ext]"
+    assetModuleFilename: 'assets/[name].[ext]',
   },
   module: {
     rules: [
       {
         test: /\.(css|s[ac]ss)$/,
-        use: ["style-loader", "css-loader", "sass-loader"]
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
         test: /\.(jpg|jpeg|gif|png|svg)$/,
-        type: "asset/resource"
+        type: 'asset/resource',
       },
       {
         test: /\.json$/,
-        type: "json"
-      }
+        type: 'json',
+      },
     ],
   },
   plugins: [
@@ -41,7 +42,7 @@ module.exports = {
           from: path.resolve(__dirname, 'src/public/'),
           to: path.resolve(__dirname, 'dist/'),
           globOptions: {
-            ignore: ['src/public/heros/**'],
+            ignore: ['src/public/images/'],
           },
         },
       ],
@@ -50,9 +51,9 @@ module.exports = {
   ],
   resolve: {
     alias: {
-      "@styles": path.resolve(__dirname, "src/styles"),
-      "@scss": path.resolve(__dirname, "src/styles/scss"),
-      "@images": path.resolve(__dirname, "public/images"),
-    }
-  }
+      '@styles': path.resolve(__dirname, 'src/styles'),
+      '@scss': path.resolve(__dirname, 'src/styles/scss'),
+      '@images': path.resolve(__dirname, 'public/images'),
+    },
+  },
 };
