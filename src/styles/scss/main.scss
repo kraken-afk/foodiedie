@@ -1,5 +1,15 @@
-@import "./variables.scss";
 @import "./font.scss";
+
+/* Colors */
+$pale-spring-bud: #ccd5ae;
+$pale-spring-bud-2: #e9edc9ff;
+$cornsilk: #fefae0ff;
+$cornsilkTransparent: rgba(254, 250, 224, 0.7);
+$papaya-whip: #faedcdff;
+$fawn: #d4a373ff;
+$seagreen: #2e8b57;
+$dark: #020202;
+$light: #fff;
 
 /* style */
 * {
@@ -15,8 +25,8 @@ html {
 
 body {
   font-family: $font-primary;
-  background-color: $cornsilk;
   overflow-x: hidden;
+  transition: background-color 500ms ease-in, color 500 ease-in;
 }
 
 img {
@@ -24,13 +34,92 @@ img {
 }
 
 :root {
-  font-size: 18px
+  font-size: 18px;
+
+  --c-light-bg-primary: #fefae0ff;
+  --c-light-bg-secondary: #2e8b57;
+  --c-light-bg-third: #faedcdff;
+  --c-light-bg-transparent: rgba(254, 250, 224, 0.7);
+
+  --c-light-text-primary: #2e8b57;
+  --c-light-text-secondary: #020202;
+  --c-light-text-dark: #020202;
+  --c-light-text-dark-opacity: #0202020d;
+
+  --c-light-header-primary: #fefae0ff;
+  --c-light-header-secondary: #ccd5ae;
+  --c-light-header-third: #e9edc9ff;
+
+
+  --c-dark-bg-primary: #151522;
+  --c-dark-bg-secondary: #6c7086;
+  --c-dark-bg-third: #b4befe;
+  --c-dark-bg-transparent: #11111b79;
+
+  --c-dark-text-primary: #a6e3a1;
+  --c-dark-text-secondary: #cdd6f4;
+  --c-dark-text-dark: #cdd6f4;
+  --c-dark-text-dark-opacity: #cdd6f485;
+
+  --c-dark-header-primary: #b4befe;
+  --c-dark-header-secondary: #1e1e2e;
+  --c-dark-header-third: #11111b;
+}
+
+.light {
+  --bg-primary: var(--c-light-bg-primary);
+  --bg-secondary: var(--c-light-bg-secondary);
+  --bg-third: var(--c-light-bg-third);
+  --bg-transparent: var(--c-light-bg-transparent);
+
+  --text-primary: var(--c-light-text-primary);
+  --text-secondary: var(--c-light-text-secondary);
+  --text-p: var(--c-light-text-dark);
+  --text-p-opacity: var(--c-light-text-dark-opacity);
+
+  --header-primary: var(--c-light-header-primary);
+  --header-secondary: var(--c-light-header-secondary);
+  --header-third: var(--c-light-header-third);
+
+  --card-button: #2e8b57;
+
+  --real-header-1: #fefae0ff;
+  --real-header-2: #ccd5ae;
+
+  background-color: var(--bg-primary);
+}
+
+.dark {
+  --bg-primary: var(--c-dark-bg-primary);
+  --bg-secondary: var(--c-dark-bg-secondary);
+  --bg-third: var(--c-dark-bg-third);
+  --bg-transparent: var(--c-dark-bg-transparent);
+
+  --text-primary: var(--c-dark-text-primary);
+  --text-secondary: var(--c-dark-text-secondary);
+  --text-p: var(--c-dark-text-dark);
+  --text-p-opacity: var(--c-dark-text-dark-opacity);
+
+  --header-primary: var(--c-dark-header-primary);
+  --header-secondary: var(--c-dark-header-secondary);
+  --header-third: var(--c-dark-header-third);
+
+  --card-button: #89b4fa;
+
+  --real-header-1: #11111b;
+  --real-header-2: #1e1e2e;
+
+  background-color: var(--bg-primary);
 }
 
 :any-link {
   text-decoration: none;
   color: inherit;
   font-weight: 500;
+}
+
+p {
+  color: var(--text-p);
 }
 
 $touch-target-padding: .5rem;
@@ -50,14 +139,13 @@ $touch-hover-transition: all .2s ease-out;
   top: 0;
   z-index: 10;
 
-  &--light {
-    background-color: $cornsilk;
-    background-color: $cornsilkTransparent;
-    backdrop-filter: blur(4px);
-  }
+  background-color: var(--bg-primary);
 
-  &--dark {
-    background-color: $dark;
+  @media screen and (min-width: 769px) {
+    & {
+      background-color: var(--bg-transparent);
+      backdrop-filter: blur(5px);
+    }
   }
 
   &__title {
@@ -67,7 +155,7 @@ $touch-hover-transition: all .2s ease-out;
     font-family: $font-secondary;
     font-weight: 700;
     font-size: 2rem;
-    color: $seagreen;
+    color: var(--text-primary);
 
     transition: $touch-hover-transition;
 
@@ -91,7 +179,7 @@ $touch-hover-transition: all .2s ease-out;
     margin-right: .4rem;
     border-radius: 12px;
     transition: $touch-hover-transition;
-    color: $seagreen;
+    color: var(--text-primary);
     text-align: center;
     position: relative;
 
@@ -102,11 +190,12 @@ $touch-hover-transition: all .2s ease-out;
     }
 
     &:hover {
-      background-color: $pale-spring-bud;
+      background-color: var(--header-secondary);
+
     }
 
     &:focus {
-      background-color: $pale-spring-bud;
+      background-color: var(--header-secondary);
       transform: scale(.95);
     }
 
@@ -121,7 +210,7 @@ $touch-hover-transition: all .2s ease-out;
       height: 3px;
       border-radius: 5px;
 
-      background-color: $pale-spring-bud;
+      background-color: var(--header-secondary);
 
       position: absolute;
       bottom: 15%;
@@ -133,7 +222,7 @@ $touch-hover-transition: all .2s ease-out;
       left: 50%;
       transform: translateX(-50%);
       width: 60%;
-      background-color: $seagreen;
+      background-color: var(--bg-secondary);
     }
   }
 
@@ -163,7 +252,7 @@ $touch-hover-transition: all .2s ease-out;
     &__line {
       width: 100%;
       height: 2px;
-      background-color: $seagreen;
+      background-color: var(--bg-secondary);
       transition: .4s ease-out;
 
       &:first-child {
@@ -173,7 +262,7 @@ $touch-hover-transition: all .2s ease-out;
     }
 
     &:active {
-      background-color: rgba(0, 0, 0, .05);
+      background-color: var(--text-p-opacity);
       scale: .95;
     }
   }
@@ -209,14 +298,14 @@ $touch-hover-transition: all .2s ease-out;
     }
 
     & span:first-child {
-      color: $pale-spring-bud;
-      background-color: $cornsilk;
+      color: var(--real-header-1);
+      background-color: var(--real-header-2);
       width: min-content;
     }
 
     & span:last-child {
-      color: $cornsilk;
-      background-color: $pale-spring-bud;
+      color: var(--real-header-2);
+      background-color: var(--real-header-1);
       margin-left: calc(48% + 1px);
       width: max-content;
     }
@@ -234,15 +323,15 @@ $touch-hover-transition: all .2s ease-out;
     font-size: .9rem;
     padding: 10px 20px;
 
-    background-color: $cornsilk;
-    color: $seagreen;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
     border-radius: 8px;
     box-shadow: 0 3px 5px rgba(0, 0, 0, .2);
 
     transition: $touch-hover-transition;
 
     &:hover {
-      background-color: $pale-spring-bud;
+      background-color: var(--header-secondary);
     }
   }
 }
@@ -261,7 +350,7 @@ $touch-hover-transition: all .2s ease-out;
 
   &__title {
     font-family: $font-secondary;
-    color: $seagreen;
+    color: var(--text-primary);
     font-size: 2rem;
     margin-bottom: 1rem;
   }
@@ -270,7 +359,7 @@ $touch-hover-transition: all .2s ease-out;
     font-size: 1rem;
 
     &::first-letter {
-      font-family: 'Times New Roman', Times, serif;
+      font-family: 'Times New Roman', serif;
       margin-left: 2rem;
       font-size: 1.5rem;
       font-weight: 700;
@@ -293,7 +382,7 @@ $touch-hover-transition: all .2s ease-out;
 
   display: flex;
   flex-direction: column;
-  background-color: $pale-spring-bud-2;
+  background-color: var(--header-third);
   border-radius: 8px;
 
   &__img {
@@ -321,9 +410,10 @@ $touch-hover-transition: all .2s ease-out;
     margin-bottom: 1.2rem;
 
     & h3 {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
+      width: min-content;
       font-family: $font-secondary;
-      color: $seagreen;
+      color: var(--text-primary);
       flex-basis: 80%;
       cursor: help;
     }
@@ -339,9 +429,11 @@ $touch-hover-transition: all .2s ease-out;
     align-items: center;
     justify-content: center;
     flex-basis: 20%;
+    font-size: .6rem;
 
     & img {
       margin-right: 5px;
+      scale: .95;
     }
   }
 
@@ -354,9 +446,9 @@ $touch-hover-transition: all .2s ease-out;
     align-items: center;
     justify-content: center;
 
-    padding: 3px 6px;
-    background-color: $papaya-whip;
-    color: $seagreen;
+    padding: 2px 6px;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
     font-size: 1rem;
     font-weight: 700;
 
@@ -369,7 +461,8 @@ $touch-hover-transition: all .2s ease-out;
   &__button {
     border: none;
     border-radius: 8px;
-    background-color: $pale-spring-bud;
+    background-color: var(--header-secondary);
+    color: var(--card-button);
     padding: 10px 25px;
     font-family: $font-primary;
     font-size: 1rem;
@@ -395,9 +488,9 @@ $touch-hover-transition: all .2s ease-out;
   width: 100%;
   height: 100px;
   padding: 1.5rem;
-  background-color: $pale-spring-bud;
+  background-color: var(--header-secondary);
 
-  color: $seagreen;
+  color: var(--text-primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -456,6 +549,35 @@ div.blured {
 }
 
 
+body.dark .card__city {
+  border-radius: 2px;
+  background-color: var(--card-button);
+  padding: 2px;
+}
+
+#theme-btn {
+  position: fixed;
+  z-index: 999;
+  bottom: 10%;
+  right: 4%;
+
+  display: block;
+  border: none;
+  border-radius: 50%;
+
+  width: 1.8rem;
+  height: 1.8rem;
+  font-size: 1.1em;
+
+  cursor: pointer;
+}
+
+.theme-light {
+  background-color: var(--c-dark-header-secondary);
+  color: var(--c-dark-bg-third);
+}
+
+
 /* wide screen breakpoint */
 
 @media screen and (min-width: 1200px) {
@@ -484,7 +606,7 @@ div.blured {
       display: flex;
       flex-direction: column;
 
-      background-color: $cornsilk;
+      background-color: var(--bg-primary);
       text-align: center;
       border-radius: 0 0 10px 10px;
       transition: .25s ease-out;
@@ -539,7 +661,7 @@ div.blured {
       visibility: visible;
 
       &.active {
-        background-color: rgba(0, 0, 0, .05);
+        background-color: var(--text-p-opacity);
       }
 
       &.active &__line {
