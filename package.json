@@ -2,7 +2,7 @@
   "name": "restaurant-apps",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "start-dev": "webpack-dev-server --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
@@ -43,6 +43,7 @@
   },
   "dependencies": {
     "lit": "^2.4.1",
+    "melanke-watchjs": "^1.5.2",
     "regenerator-runtime": "^0.13.9"
   }
 }

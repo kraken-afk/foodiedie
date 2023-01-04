@@ -1,8 +1,8 @@
 import { LitElement, html } from 'lit';
-import svgLeaf from '../../public/images/leaf-svgrepo-com.svg';
-import homeSvg from '../../public/images/bx-home-circle.svg';
-import heartSvg from '../../public/images/bx-heart.svg';
-import meSvg from '../../public/images/bx-ghost.svg';
+import svgLeaf from '@images/leaf-svgrepo-com.svg';
+import homeSvg from '@images/bx-home-circle.svg';
+import heartSvg from '@images/bx-heart.svg';
+import meSvg from '@images/bx-ghost.svg';
 
 class NavBar extends LitElement {
   constructor() {

@@ -369,8 +369,8 @@ $touch-hover-transition: all .2s ease-out;
 
 .list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1rem
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 1rem;
 }
 
 .card {
@@ -389,7 +389,7 @@ $touch-hover-transition: all .2s ease-out;
     width: 100%;
     border-radius: 6px;
 
-    & > img {
+    &>img {
       height: Min(50vw, 180px);
       object-fit: cover;
       object-position: center;
@@ -672,6 +672,18 @@ body.dark .card__city {
 
 /* mobile phone breakpoint */
 
+@media screen and (max-width: 633px) {
+  .card {
+    max-width: 85vw;
+
+    &__img {
+      &>img {
+        height: 50vw;
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 576px) {
   .nav {
     &__title {
@@ -684,16 +696,6 @@ body.dark .card__city {
 
     &__title {
       font-size: clamp(2rem, 15vw, 4rem);
-    }
-  }
-
-  .card {
-    max-width: 85vw;
-
-    &__img {
-      & > img {
-        height: 50vw;
-      }
     }
   }
 }

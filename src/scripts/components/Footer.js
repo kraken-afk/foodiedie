@@ -20,7 +20,7 @@ class Footer extends LitElement {
   render() {
     return html`
       <footer class="footer" tabindex="0">
-        <button @click=${this.themeClickHandler} aria-disabled="true" id="theme-btn" class="theme-light">👁‍🗨</button>
+        <button @click=${this.themeClickHandler} aria-disabled="true" id="theme-btn" class="theme-light">👁</button>
         <p>Copyright <span aria-disabled="true" aria-hidden="true">&#169;</span> <span>${new Date().getFullYear()}</span> code and design by Romeo Noveanre.</p>
       </footer>
     `;

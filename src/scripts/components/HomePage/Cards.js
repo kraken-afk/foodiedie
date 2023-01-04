@@ -1,23 +1,26 @@
 import { html, LitElement } from 'lit';
-import mapSvg from '../../public/images/bx-map.svg';
-import starSvg from '../../public/images/bxs-star.svg';
-import { PICTURE_SMALL_ID } from '../global/config';
+import mapSvg from '@images/bx-map.svg';
+import starSvg from '@images/bxs-star.svg';
+import { PICTURE_SMALL_ID } from '@global/config';
+import Route from '@routes/route';
 
 export default class RestaurantCard extends LitElement {
-  constructor(code) {
+  constructor(data) {
     super();
-    this.code = code ?? null;
+    this.data = data ?? null;
   }
 
-  readMoreClickHanlder() {
-    alert('click more');
+  clickHandler(event) {
+    event.preventDefault();
+    const { id } = event.target.dataset
+    Route.go('/detail/' + id);
   }
 
   render() {
-    if (!this.code) throw new TypeError('`code` attribute cannot be empty');
+    if (!this.data) throw new TypeError('`data` attribute cannot be empty');
     const {
-      name, description, city, pictureId: source, rating,
-    } = this.code;
+      name, description, city, pictureId: source, rating, id
+    } = this.data;
 
     return html`
       <div class="card" tabindex="0">
@@ -31,7 +34,7 @@ export default class RestaurantCard extends LitElement {
             <span aria-label=${`placed at ${city},`} class="card__city"> <img width="18" src=${mapSvg} alt="" /> ${city}</span>
           </div>
           <p class="truncate">${description}</p>
-          <button @click=${this.readMoreClickHanlder} aria-hidden="true" aria-disabled class="card__button">read more...</button>
+          <button @click=${this.clickHandler} data-id="${id}" aria-hidden="true" aria-disabled class="card__button">read more...</button>
           </article>
       </div>
     `;

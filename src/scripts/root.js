@@ -1,16 +1,21 @@
 import { LitElement } from 'lit';
-import theme from '../utils/theme';
-import HomeComponent from './Home';
+import theme from '@utils/theme';
+import Route from '@routes/route';
+import WatchJS from 'melanke-watchjs';
 
 class RootComponent extends LitElement {
   static properties = {
-    currentRoute: { attribute: false },
+    page: { attribute: false },
   };
 
   constructor() {
     super();
+    this.page = Route.getPage();
+    const { watch } = WatchJS;
 
-    this.currentRoute = new HomeComponent();
+    watch(Route, 'location', () => {
+      this.page = Route.getPage();
+    });
   }
 
   createRenderRoot() { return this; }
@@ -21,7 +26,7 @@ class RootComponent extends LitElement {
   }
 
   render() {
-    return this.currentRoute.render();
+    return this.page.render();
   }
 }
 

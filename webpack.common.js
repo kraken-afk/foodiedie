@@ -6,7 +6,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   entry: {
-    app: path.resolve(__dirname, 'src/scripts/index.js'),
+    app: path.resolve(__dirname, 'src/scripts/app.js'),
     // sw: path.resolve(__dirname, 'src/scripts/sw.js'),
   },
   output: {
@@ -55,9 +55,12 @@ module.exports = {
   ],
   resolve: {
     alias: {
-      '@styles': path.resolve(__dirname, 'src/styles'),
+      '@components': path.resolve(__dirname, 'src/scripts/components'),
       '@scss': path.resolve(__dirname, 'src/styles/scss'),
-      '@images': path.resolve(__dirname, 'public/images'),
+      '@images': path.resolve(__dirname, 'src/public/images'),
+      '@global': path.resolve(__dirname, 'src/scripts/global'),
+      '@utils': path.resolve(__dirname, 'src/scripts/utils'),
+      '@routes': path.resolve(__dirname, 'src/scripts/routes'),
     },
   },
 };

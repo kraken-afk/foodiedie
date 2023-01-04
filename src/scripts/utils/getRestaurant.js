@@ -4,9 +4,6 @@ const getRestaurant = {
   async list() {
     const response = await fetch(RESTAURANT_LIST_URL, { method: 'GET' });
     const list = await response.json();
-
-    console.info(list, 'getRestaurant');
-
     return list;
   },
 };
