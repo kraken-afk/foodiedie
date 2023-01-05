@@ -78,6 +78,7 @@
   &__title {
     @include title;
     margin-left: 1rem;
+    text-transform: capitalize;
   }
 
   &__list {
