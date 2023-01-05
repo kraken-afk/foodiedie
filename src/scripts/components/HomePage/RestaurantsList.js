@@ -1,7 +1,7 @@
 import { LitElement, html } from 'lit';
 import getRestaurant from '@utils/getRestaurant';
 import RestaurantCard from './Cards';
-import '@utils/components/loader';
+import createLoader  from '@utils/components/loader';
 
 export default class RestaurantList extends LitElement {
   static properties = {
@@ -11,16 +11,10 @@ export default class RestaurantList extends LitElement {
   constructor() {
     super();
     this.data = null;
-
     this.classList.add('list');
-    this.setData();
-  }
 
-  setData() {
     getRestaurant.list()
-      .then((e) => {
-        this.data = e;
-      });
+      .then((res) => this.data = res);
   }
 
   createRenderRoot() {
@@ -34,9 +28,9 @@ export default class RestaurantList extends LitElement {
 
   render() {
     if (this.data === null) {
-      const loader = document.createElement('loader-element');
-      return loader;
+      return createLoader();
     }
+
     const { restaurants } = this.data;
     return html`${restaurants.map((item) => this.createCard(item))
     }`;

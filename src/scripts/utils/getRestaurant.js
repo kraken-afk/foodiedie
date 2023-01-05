@@ -1,11 +1,21 @@
-import { RESTAURANT_LIST_URL } from '../global/config';
+import { RESTAURANT_LIST_URL, DETAIL_RESTAURANT_ID } from '@global/config';
 
 const getRestaurant = {
   async list() {
-    const response = await fetch(RESTAURANT_LIST_URL, { method: 'GET' });
-    const list = await response.json();
-    return list;
+    const response = await this.fetch(RESTAURANT_LIST_URL, { method: 'GET'});
+    return response;
   },
+
+  async detail(id) {
+    const response = await this.fetch(DETAIL_RESTAURANT_ID + id, { method: 'GET' });
+    return response;
+  },
+
+  async fetch(url, options) {
+    const response = await fetch(url, options);
+    const responseJson = await response.json();
+    return responseJson;
+  }
 };
 
 export default getRestaurant;

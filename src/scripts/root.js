@@ -1,7 +1,7 @@
 import { LitElement } from 'lit';
 import theme from '@utils/theme';
 import Route from '@routes/route';
-import WatchJS from 'melanke-watchjs';
+import '@scss/template.scss';
 
 class RootComponent extends LitElement {
   static properties = {
@@ -11,11 +11,6 @@ class RootComponent extends LitElement {
   constructor() {
     super();
     this.page = Route.getPage();
-    const { watch } = WatchJS;
-
-    watch(Route, 'location', () => {
-      this.page = Route.getPage();
-    });
   }
 
   createRenderRoot() { return this; }
@@ -23,6 +18,10 @@ class RootComponent extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     theme.init();
+
+    Route.onchange(() => {
+      this.page = Route.getPage();
+    });
   }
 
   render() {

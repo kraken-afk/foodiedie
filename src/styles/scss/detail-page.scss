@@ -1,0 +1,180 @@
+.detail {
+  display: block;
+
+  &__header {
+    display: flex;
+    flex-direction: column-reverse;
+    padding-top: 1.5rem;
+    padding-inline: 1rem;
+
+    &__description {
+      text-align: center;
+      padding: 1rem;
+      margin-top: 1rem;
+      background-color: var(--header-third);
+      border-radius: 8px;
+
+      p {
+        max-width: 800px;
+        margin-inline: auto;
+        text-align: left;
+      }
+    }
+
+    &__figure {
+      display: flex;
+      justify-content: center;
+      max-width: 600px;
+      height: 400px;
+      margin-inline: auto;
+      position: relative;
+
+      &__thumbnail {
+        object-fit: cover;
+        object-position: center;
+        width: Min(80vw, 650px);
+        border-radius: 8px;
+      }
+
+      &__rating {
+        @include ratingBadge;
+        bottom: 70%;
+        left: 5px;
+        height: min-content;
+      }
+
+      &__city {
+        @include placeBadge;
+        position: absolute;
+        bottom: 5%;
+        right: 5px;
+      }
+    }
+  }
+}
+
+.address {
+  display: flex;
+  width: max-content;
+  font-size: 1.35rem;
+  margin-left: 1rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: var(--header-third);
+  color: var(--text-p);
+  border-radius: 8px;
+}
+
+.lists-container {
+  display: grid;;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  max-width: 1300px;
+}
+
+.detail-card {
+  padding: 1rem;
+  margin-top: 1rem;
+
+  &__title {
+    @include title;
+    margin-left: 1rem;
+  }
+
+  &__list {
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    margin-top: .5rem;
+    gap: 1rem;
+
+    max-width: 600px;
+
+    &__item {
+      display: block;
+      padding: .5rem;
+      border-radius: 8px;
+      background-color: var(--header-third);
+      color: var(--text-p);
+      max-width: 200px;
+    }
+  }
+}
+
+.reviews-title {
+  display: block;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  margin-left: 1.5rem;
+  font-size: 1.5rem;
+  color: var(--text-p);
+}
+
+.comment-section-container {
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 1rem;
+  max-width: 1300px;
+}
+
+.comment-section {
+  background-color: var(--header-third);
+  padding: 1.2rem;
+  border-radius: 8px;
+  max-width: 400px;
+
+  &__header{
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    color: var(--text-p);
+
+    &__name {
+      font-size: 1.2rem;
+      margin-bottom: 5px;
+      max-width: 65%;
+    }
+
+    &__date {
+      font-size: .7rem;
+    }
+  }
+
+  &__review {
+    font-size: .9rem;
+  }
+}
+
+// wide screen
+@media screen and (min-width: 1200px) {
+  .detail {
+
+    &__header {
+      justify-content: space-around;
+      flex-direction: row;
+
+      &__description {
+
+        p {
+          max-width: 650px;
+          font-size: .9rem;
+          padding-right: 1rem;
+        }
+      }
+
+      &__figure {
+        height: min-content;
+
+        &__thumbnail {
+          width: Max(40vw, 300px);
+          max-width: 600px;
+          min-width: 425px;
+        }
+
+        &__rating {
+          left: 85%;
+        }
+      }
+    }
+  }
+}

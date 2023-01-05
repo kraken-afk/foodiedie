@@ -25,7 +25,7 @@ export default class RestaurantCard extends LitElement {
     return html`
       <div class="card" tabindex="0">
         <figure class="card__img">
-          <img draggable="false" src=${PICTURE_SMALL_ID + source} alt="${name} image," />
+          <img @click=${this.clickHandler} data-id="${id}" draggable="false" src=${PICTURE_SMALL_ID + source} alt="${name} image," />
           <span aria-label=${`rating: ${rating} star,`} class="card__rating"> <img width="18" src=${starSvg} alt="" /> ${rating}</span>
         </figure>
         <article class="card__description">

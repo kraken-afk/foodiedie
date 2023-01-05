@@ -1,18 +1,15 @@
-import { LitElement, html } from 'lit';
+import { html } from 'lit';
+import './Detail';
 
-export default class DetailComponent extends LitElement {
+export default class DetailComponent {
   constructor(id) {
-    super();
     this.code = id;
   }
 
-  createRenderRoot() { return this; }
-
   render() {
     return html`
-      <h1 style="color: yellow">Hello ${this.code}</h1>
+    <nav-bar></nav-bar>
+    <detail-page class="detail" code="${this.code}"></detail-page>
     `;
   }
 }
-
-customElements.define('detail-component', DetailComponent);

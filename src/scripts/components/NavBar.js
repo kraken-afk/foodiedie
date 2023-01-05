@@ -63,7 +63,7 @@ class NavBar extends LitElement {
   render() {
     return html`
         <nav class="nav nav--light">
-          <a href="./" class="nav__title">Foodiedie
+          <a href="/" class="nav__title">Foodiedie
           <span class="nav__title__leaf-logo">
             <img width="32" src=${svgLeaf} alt="" />
           </span>
@@ -73,7 +73,7 @@ class NavBar extends LitElement {
               <div class="nav__menu-btn__line"></div>
           </div>
           <div class="nav__list">
-            <a href="./" class="nav__item"><img src=${homeSvg} alt="" /> Home</a>
+            <a href="/" class="nav__item"><img src=${homeSvg} alt="" /> Home</a>
             <a href="#" class="nav__item"><img src=${heartSvg} alt="" /> Favorite</a>
             <a @keydown=${this.navKeydownHandler} href="https://github.com/kraken-afk" target="_blank" class="nav__item"><img src=${meSvg} alt="" /> About Us</a>
           </div>
