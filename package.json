@@ -42,7 +42,6 @@
     "whatwg-fetch": "^3.6.2"
   },
   "dependencies": {
-    "idb": "^7.1.1",
     "lit": "^2.4.1",
     "melanke-watchjs": "^1.5.2",
     "regenerator-runtime": "^0.13.9"
