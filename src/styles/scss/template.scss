@@ -37,6 +37,58 @@
   }
 }
 
+#theme-btn {
+  position: fixed;
+  z-index: 999;
+  bottom: 10%;
+  right: 4%;
+
+  display: block;
+  border: none;
+  border-radius: 50%;
+
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.2em;
+
+  cursor: pointer;
+}
+
+.theme-light {
+  background-color: var(--c-dark-header-secondary);
+  color: var(--c-dark-bg-third);
+}
+
+.back-button {
+  display: block;
+
+  position: fixed;
+  bottom: 10%;
+  left: 4%;
+
+  transition: .2s;
+
+  & button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 1rem;
+    font-size: 1.1rem;
+    color: var(--card-button);
+    background-color: var(--header-secondary);
+    border-radius: 50%;
+    border: 1px solid var(--bg-primary);
+    cursor: pointer;
+  }
+
+  &:active {
+    opacity: .7;
+    scale: .95;
+  }
+}
+
 @keyframes rotate {
   50% {
     transform: rotate(180deg)

@@ -3,6 +3,7 @@ import svgLeaf from '@images/leaf-svgrepo-com.svg';
 import homeSvg from '@images/bx-home-circle.svg';
 import heartSvg from '@images/bx-heart.svg';
 import meSvg from '@images/bx-ghost.svg';
+import Route from '@routes/route';
 
 class NavBar extends LitElement {
   constructor() {
@@ -60,6 +61,15 @@ class NavBar extends LitElement {
     }
   }
 
+  favouriteClickHandler(event) {
+    event.preventDefault();
+    const pathname = event.target.pathname;
+    const menuBtn = document.querySelector('.nav__menu-btn');
+
+    if (menuBtn.classList.contains('active')) menuBtn.click();
+    Route.go(pathname);
+  }
+
   render() {
     return html`
         <nav class="nav nav--light">
@@ -73,8 +83,8 @@ class NavBar extends LitElement {
               <div class="nav__menu-btn__line"></div>
           </div>
           <div class="nav__list">
-            <a href="/" class="nav__item"><img src=${homeSvg} alt="" /> Home</a>
-            <a href="#" class="nav__item"><img src=${heartSvg} alt="" /> Favorite</a>
+            <a href="/" class="nav__item"><img src=${homeSvg}/> Home</a>
+            <a @click=${this.favouriteClickHandler} href="/favourite" class="nav__item"><img src=${heartSvg}/> Favorite</a>
             <a @keydown=${this.navKeydownHandler} href="https://github.com/kraken-afk" target="_blank" class="nav__item"><img src=${meSvg} alt="" /> About Us</a>
           </div>
         </nav>`;

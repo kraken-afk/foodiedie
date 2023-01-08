@@ -1,6 +1,7 @@
 import NotFound from '@components/404';
 import DetailComponent from '../components/DetailPage';
 import HomeComponent from '../components/HomePage';
+import FavouriteComponent from '../components/FavouritePage';
 
 
 class RouteProxy {
@@ -27,6 +28,10 @@ class RouteProxy {
       return new DetailComponent(id);
     }
 
+    if (path === '/favourite') {
+      return new FavouriteComponent();
+    }
+
     return new NotFound();
   };
 
@@ -49,6 +54,10 @@ class RouteProxy {
 
     if (!path) this.location = '/';
     else this.location = this.map(path);
+  }
+
+  back() {
+    window.history.back();
   }
 }
 

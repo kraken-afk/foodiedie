@@ -20,10 +20,6 @@ $light: #fff;
   transition: background-color 250ms ease-in-out, color 500ms ease-in-out;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   font-family: $font-primary;
   overflow-x: hidden;
@@ -393,6 +389,7 @@ h6 {
   flex-direction: column;
   background-color: var(--header-third);
   border-radius: 8px;
+  max-width: 350px;
 
   &__img {
     overflow: hidden;
@@ -513,29 +510,6 @@ div.blured {
     top: 0;
   }
 }
-
-#theme-btn {
-  position: fixed;
-  z-index: 999;
-  bottom: 10%;
-  right: 4%;
-
-  display: block;
-  border: none;
-  border-radius: 50%;
-
-  width: 1.8rem;
-  height: 1.8rem;
-  font-size: 1.1em;
-
-  cursor: pointer;
-}
-
-.theme-light {
-  background-color: var(--c-dark-header-secondary);
-  color: var(--c-dark-bg-third);
-}
-
 
 /* wide screen breakpoint */
 
@@ -743,3 +717,4 @@ div.blured {
 }
 
 @import './detail-page.scss';
+@import './favourite-page.scss';

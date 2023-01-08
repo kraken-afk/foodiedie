@@ -179,3 +179,34 @@
     }
   }
 }
+
+#favouriteBtn {
+  position: fixed;
+  z-index: 999;
+  bottom: 20%;
+  right: 4%;
+
+  display: block;
+  border: none;
+  border-radius: 50%;
+
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.2em;
+
+  cursor: pointer;
+
+  background-color: crimson;
+  color: lightgray;
+
+  transition: .2s;
+
+  &:active {
+    scale: 1.15;
+  }
+
+  &[data-isfav="1"] {
+    background-color: lightgray;
+    color: crimson;
+  }
+}

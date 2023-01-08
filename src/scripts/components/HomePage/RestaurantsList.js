@@ -1,6 +1,6 @@
 import { LitElement, html } from 'lit';
 import getRestaurant from '@utils/getRestaurant';
-import RestaurantCard from './Cards';
+import RestaurantCard from '@utils/components/Card';
 import createLoader  from '@utils/components/loader';
 
 export default class RestaurantList extends LitElement {

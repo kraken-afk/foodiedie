@@ -1,10 +1,11 @@
 import { LitElement, html } from "lit";
+import { PICTURE_MEDIUM_ID } from '@global/config';
 import getRestaurant from '@utils/getRestaurant';
 import createLoader from '@utils/components/loader';
-import { PICTURE_MEDIUM_ID } from '@global/config';
 import mapSvg from '@images/bx-map.svg';
 import starSvg from '@images/bxs-star.svg';
 import CommentSection from "./CommentSection";
+import openLocalDb from "@utils/indexedDb";
 
 class DetailPage extends LitElement {
   static properties = {
@@ -16,13 +17,39 @@ class DetailPage extends LitElement {
     super();
     this.code = null;
     this.data = null;
+    this.db = null;
+    this.openDb();
+  }
+
+  async openDb() {
+    try {
+      const db = await openLocalDb();
+      this.db = db;
+    }
+    catch {
+      this.db = null;
+      console.log('err');
+    }
   }
 
   connectedCallback() {
     super.connectedCallback();
 
     getRestaurant.detail(this.code)
-      .then((res) => this.data = res);
+      .then((res) => this.data = res)
+      .then(async () => {
+        const { id } = this.data.restaurant;
+        const { db } = this;
+        const favBtn = document.getElementById('favouriteBtn');
+        const result = await db.get(id) ? 1 : 0;
+        favBtn.dataset.isfav = result
+      });
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    const { db } = this;
+    db.close();
   }
 
   createRenderRoot() { return this; }
@@ -41,21 +68,37 @@ class DetailPage extends LitElement {
     `;
   }
 
+  async favouriteClickHandler({ target }) {
+    if (this.db === null) return;
+
+    const favBtn = document.getElementById('favouriteBtn');
+    const { restaurant } = this.data;
+    const { db } = this;
+
+    if (+favBtn.dataset.isfav) {
+      await db.remove(restaurant.id);
+      favBtn.dataset.isfav = 0;
+    } else {
+      await db.add(restaurant);
+      favBtn.dataset.isfav = 1;
+    }
+  }
+
   render() {
     if (this.data === null) {
       return html`
-      <div class="loader-container">
+      <div class="loade r-container">
       ${createLoader()}
       </div>
       `;
     }
+    window.scrollTo({ top: 0 });
 
     const { restaurant: {
-      name, description, city,
+      name, description, city, id,
       address, pictureId, rating,
       categories, menus, customerReviews
     } } = this.data;
-    window.scrollTo({ top: 0 });
 
     const { foods, drinks } = menus;
 
@@ -81,6 +124,8 @@ class DetailPage extends LitElement {
     </div>
     <span class="reviews-title">Reviews</span>
     ${new CommentSection(customerReviews).render()}
+    <button @click=${this.favouriteClickHandler} data-isfav="0" id="favouriteBtn">♥</button>
+    <back-button></back-button>
     `;
 
   }

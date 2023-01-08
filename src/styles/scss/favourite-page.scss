@@ -1,0 +1,16 @@
+.favourite-page {
+  padding: 1rem;
+  padding-top: 3rem;
+
+  &__title {
+    font-size: 2rem;
+    margin-left: 8px;
+    margin-bottom: 3rem
+  }
+
+  &__zero {
+    color: var(--text-p);
+    font-size: 1.5rem;
+    text-align: center;
+  }
+}
