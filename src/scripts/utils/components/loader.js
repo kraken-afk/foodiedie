@@ -1,5 +1,6 @@
 import { LitElement, html } from 'lit';
 import '@scss/template.scss';
+import '@utils/components/offllineLoader';
 
 class Loader extends LitElement {
   constructor() {
@@ -20,6 +21,10 @@ class Loader extends LitElement {
 customElements.define('loader-element', Loader);
 
 export default function createLoader() {
+  if (!navigator.onLine) {
+    return html`<offline-loader></offline-loader>`;
+  }
+
   const loader = document.createElement('loader-element');
   loader.classList.add('loader');
 

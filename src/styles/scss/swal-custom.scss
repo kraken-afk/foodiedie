@@ -1,0 +1,29 @@
+.swal-modal {
+  background-color: var(--header-third);
+}
+
+.swal-title {
+  @include title;
+}
+
+.swal-text {
+  color: var(--text-p);
+}
+
+.swal-button--confirm {
+  background-color: var(--header-secondary);
+  color: var(--card-button);
+
+  &:hover {
+    background-color: rgba(var(--header-secondary), .6) !important;
+  }
+}
+
+.swal-button--cancel {
+  background-color: var(--header-third);
+  color: var(--text-p);
+
+  &:hover {
+      background-color: rgba(var(--header-third), .6) !important;
+    }
+}

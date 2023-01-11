@@ -5,7 +5,9 @@ export default class NotFound extends LitElement {
 
   render() {
     return html`
-      <h1>404 Not Found</h1>
+      <div class="err404">
+        <h1>Err' 404 Not Found</h1>
+      </div>
     `;
   }
 }

@@ -2,18 +2,21 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const AssetListWebpackPlugin = require('asset-list-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   entry: {
     app: path.resolve(__dirname, 'src/scripts/app.js'),
-    // sw: path.resolve(__dirname, 'src/scripts/sw.js'),
+    sw: path.resolve(__dirname, 'src/scripts/sw.js'),
   },
   output: {
-    filename: '[name].bundle.js',
+    filename: (pathData) => {
+      return pathData.chunk.name === 'app' ? 'app.bundle.js' : 'sw.js';
+    },
     path: path.resolve(__dirname, 'dist'),
     clean: true,
-    assetModuleFilename: 'assets/[name].[ext]',
+    assetModuleFilename: 'assets/[name][ext]',
   },
   module: {
     rules: [
@@ -22,12 +25,16 @@ module.exports = {
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
-        test: /\.(jpg|jpeg|gif|png|svg)$/,
+        test: /\.(jpg|jpeg|gif|png|svg|webp)$/,
         type: 'asset/resource',
       },
       {
-        test: /\.json$/,
-        type: 'json',
+        test: /\.(json|webmanifest)$/,
+        type: 'asset/resource',
+        generator: {
+          filename: '[name][ext]'
+        }
+
       },
     ],
   },
@@ -35,6 +42,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.resolve(__dirname, 'src/templates/index.html'),
+      excludeChunks: ['sw']
     }),
     new CopyWebpackPlugin({
       patterns: [
@@ -42,16 +50,13 @@ module.exports = {
           from: path.resolve(__dirname, 'src/public/icons'),
           to: path.resolve(__dirname, 'dist/icons'),
         },
-        {
-          from: path.resolve(__dirname, 'src/public'),
-          to: path.resolve(__dirname, 'dist/'),
-          globOptions: {
-            ignore: [path.resolve(__dirname, 'src/public/heros')],
-          },
-        },
       ],
     }),
     new CleanWebpackPlugin(),
+    new AssetListWebpackPlugin({
+      name: 'ls',
+      format: 'array',
+    }),
   ],
   resolve: {
     alias: {
@@ -61,6 +66,7 @@ module.exports = {
       '@global': path.resolve(__dirname, 'src/scripts/global'),
       '@utils': path.resolve(__dirname, 'src/scripts/utils'),
       '@routes': path.resolve(__dirname, 'src/scripts/routes'),
+      '@public': path.resolve(__dirname, 'src/public'),
     },
   },
 };

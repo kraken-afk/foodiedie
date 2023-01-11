@@ -1,7 +1,7 @@
 import { html, LitElement } from 'lit';
+import { PICTURE_SMALL_ID, PICTURE_MEDIUM_ID } from '@global/config';
 import mapSvg from '@images/bx-map.svg';
 import starSvg from '@images/bxs-star.svg';
-import { PICTURE_SMALL_ID } from '@global/config';
 import Route from '@routes/route';
 
 export default class RestaurantCard extends LitElement {
@@ -25,7 +25,12 @@ export default class RestaurantCard extends LitElement {
     return html`
       <div class="card" tabindex="0">
         <figure class="card__img">
-          <img @click=${this.clickHandler} data-id="${id}" draggable="false" src=${PICTURE_SMALL_ID + source} alt="${name} image," />
+          <img
+          srcset="${PICTURE_MEDIUM_ID + source} 2x"
+          @click=${this.clickHandler}
+          data-id="${id}" loading="lazy"
+          draggable="false" src=${PICTURE_SMALL_ID + source}
+          alt="${name} image," />
           <span aria-label=${`rating: ${rating} star,`} class="card__rating"> <img width="18" src=${starSvg} alt="" /> ${rating}</span>
         </figure>
         <article class="card__description">
@@ -34,7 +39,7 @@ export default class RestaurantCard extends LitElement {
             <span aria-label=${`placed at ${city},`} class="card__city"> <img width="18" src=${mapSvg} alt="" /> ${city}</span>
           </div>
           <p class="truncate">${description}</p>
-          <button @click=${this.clickHandler} data-id="${id}" aria-hidden="true" aria-disabled class="card__button">read more...</button>
+          <button @click=${this.clickHandler} data-id="${id}" class="card__button">read more...</button>
           </article>
       </div>
     `;

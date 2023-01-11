@@ -280,7 +280,7 @@ h6 {
 
 /* header */
 .header {
-  background-image: url("../../public/images/heros/hero-image_1.jpg");
+  background-image: url("../../public/images/heros/hero-image_1.webp");
   background-position: center;
   background-size: cover;
 
@@ -718,3 +718,4 @@ div.blured {
 
 @import './detail-page.scss';
 @import './favourite-page.scss';
+@import './swal-custom.scss';

@@ -75,7 +75,7 @@ class NavBar extends LitElement {
         <nav class="nav nav--light">
           <a href="/" class="nav__title">Foodiedie
           <span class="nav__title__leaf-logo">
-            <img width="32" src=${svgLeaf} alt="" />
+            <img width="32" src=${svgLeaf} alt="Foodiedie Logo" />
           </span>
           </a>
           <div @click=${this.menuBtnClickHandler} @keydown=${this.keydownHandler} tabindex="0" class="nav__menu-btn" aria-label="menu button, ${this.menuBtnStatus ? 'opened' : 'closed'}, click enter to ${!this.menuBtnStatus ? 'open' : 'close'} ${this.menuBtnStatus ? 'and click tab for navigation' : ''}">
@@ -83,9 +83,15 @@ class NavBar extends LitElement {
               <div class="nav__menu-btn__line"></div>
           </div>
           <div class="nav__list">
-            <a href="/" class="nav__item"><img src=${homeSvg}/> Home</a>
-            <a @click=${this.favouriteClickHandler} href="/favourite" class="nav__item"><img src=${heartSvg}/> Favorite</a>
-            <a @keydown=${this.navKeydownHandler} href="https://github.com/kraken-afk" target="_blank" class="nav__item"><img src=${meSvg} alt="" /> About Us</a>
+            <a href="/" class="nav__item">
+              <img alt="Home navigation icon" src=${homeSvg}/> Home
+            </a>
+            <a @click=${this.favouriteClickHandler} href="/favourite" class="nav__item">
+              <img alt="Favourite navigation icon" src=${heartSvg}/> Favorite
+            </a>
+            <a @keydown=${this.navKeydownHandler} href="https://github.com/kraken-afk" target="_blank" class="nav__item">
+              <img alt="About us navigation icon" src=${meSvg} alt="" /> About Us
+            </a>
           </div>
         </nav>`;
   }

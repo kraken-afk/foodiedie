@@ -7,7 +7,8 @@
     "start-dev": "webpack-dev-server --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "lint": "eslint src/ --fix",
-    "test": "karma start"
+    "test": "karma start",
+    "build-serve": "npm run build && http-server dist/ --port=9000"
   },
   "keywords": [],
   "author": "Romeo Noveanre noveanrer@gmail.com",
@@ -15,6 +16,7 @@
   "devDependencies": {
     "@babel/core": "^7.18.5",
     "@babel/preset-env": "^7.18.2",
+    "asset-list-webpack-plugin": "^0.4.0",
     "babel-loader": "^8.2.5",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^11.0.0",
@@ -23,6 +25,7 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
     "html-webpack-plugin": "^5.5.0",
+    "http-server": "^14.1.1",
     "jasmine-ajax": "^4.0.0",
     "jasmine-core": "^4.2.0",
     "karma": "^5.2.3",
@@ -44,6 +47,7 @@
   "dependencies": {
     "lit": "^2.4.1",
     "melanke-watchjs": "^1.5.2",
-    "regenerator-runtime": "^0.13.9"
+    "regenerator-runtime": "^0.13.9",
+    "sweetalert": "^2.1.2"
   }
 }

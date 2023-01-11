@@ -11,6 +11,7 @@ class RootComponent extends LitElement {
   constructor() {
     super();
     this.page = Route.getPage();
+    this.isOnline = navigator.onLine;
   }
 
   createRenderRoot() { return this; }

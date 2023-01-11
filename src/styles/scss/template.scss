@@ -19,6 +19,8 @@
   $size: 40px;
   display: flex;
   justify-content: center;
+  align-items: center;
+  height: 98vh;
   gap: 0.6rem;
 
   .box {
@@ -86,6 +88,20 @@
   &:active {
     opacity: .7;
     scale: .95;
+  }
+}
+
+.offline-loader {
+  width: 30%;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  svg, path, p {
+   color: var(--text-primary);
+   fill: var(--text-primary);
   }
 }
 
