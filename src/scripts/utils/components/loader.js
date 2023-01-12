@@ -3,10 +3,6 @@ import '@scss/template.scss';
 import '@utils/components/offllineLoader';
 
 class Loader extends LitElement {
-  constructor() {
-    super();
-  }
-
   createRenderRoot() { return this; }
 
   render() {

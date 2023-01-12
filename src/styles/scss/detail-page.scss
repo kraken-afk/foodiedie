@@ -186,18 +186,21 @@
   bottom: 20%;
   right: 4%;
 
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: none;
   border-radius: 50%;
 
-  width: 2rem;
-  height: 2rem;
-  font-size: 1.2em;
+  width: 2.5rem;
+  height: 2.5rem;
 
   cursor: pointer;
 
   background-color: crimson;
-  color: lightgray;
+  svg {
+    fill: lightgrey;
+  }
 
   transition: .2s;
 
@@ -207,6 +210,8 @@
 
   &[data-isfav="1"] {
     background-color: lightgray;
-    color: crimson;
+    svg {
+      fill: crimson;
+    }
   }
 }

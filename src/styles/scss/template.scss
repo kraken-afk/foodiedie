@@ -1,14 +1,14 @@
 .loader-container {
   display: block;
-  height: 100%;
-  width: calc(100% - 70px);
+  width: 100%;
+  height: calc(100% - 80px);
 
   display: flex;
   justify-content: center;
   align-items: center;
 
   position: absolute;
-  z-index: 999;
+  z-index: 9;
   left: 0;
   top: 70px;
 
@@ -45,20 +45,28 @@
   bottom: 10%;
   right: 4%;
 
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: none;
   border-radius: 50%;
 
-  width: 2rem;
-  height: 2rem;
-  font-size: 1.2em;
+  width: 2.5rem;
+  height: 2.5rem;
 
   cursor: pointer;
+  transition: .2s;
+
+  &:active {
+    scale: 1.1;
+  }
 }
 
 .theme-light {
   background-color: var(--c-dark-header-secondary);
-  color: var(--c-dark-bg-third);
+  svg {
+    fill: var(--c-dark-bg-third);
+  }
 }
 
 .back-button {
@@ -74,15 +82,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 2rem;
-    height: 2rem;
-    padding: 1rem;
-    font-size: 1.1rem;
-    color: var(--card-button);
     background-color: var(--header-secondary);
     border-radius: 50%;
     border: 1px solid var(--bg-primary);
     cursor: pointer;
+
+    svg {
+      width: 2.5rem;
+      height: 2.5rem;
+      fill: var(--card-button);
+    }
   }
 
   &:active {
@@ -92,12 +101,12 @@
 }
 
 .offline-loader {
-  width: 30%;
   margin-inline: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  max-width: 500px;
 
   svg, path, p {
    color: var(--text-primary);
