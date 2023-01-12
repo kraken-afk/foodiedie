@@ -2,6 +2,7 @@ import NotFound from '@components/404';
 import DetailComponent from '../components/DetailPage';
 import HomeComponent from '../components/HomePage';
 import FavouriteComponent from '../components/FavouritePage';
+import SearchPageComponent from '../components/SearchPage';
 
 
 class RouteProxy {
@@ -9,6 +10,20 @@ class RouteProxy {
     this.location = window.location.pathname;
     onpopstate = (event) => this.onpopstateHandler(event);
   }
+
+  pathHandler = {
+    notFound: () => new NotFound(),
+    default: () => new HomeComponent(),
+    detail: (path) => {
+      const id = path.split(':')[1];
+      return new DetailComponent(id);
+    },
+    favourite: () => new FavouriteComponent(),
+    searchPage: (path) => {
+      const value = path.split('?')[1].split('=')[1];
+      return new SearchPageComponent(value);
+    },
+  };
 
   map(path) {
     if (path.includes('detail')) {
@@ -19,20 +34,30 @@ class RouteProxy {
   }
 
   page(path) {
+    const { pathHandler } = this;
+    const title = document.head.querySelector('title');
+
     if (path === '/') {
-      return new HomeComponent()
+      title.textContent = 'Foodiedie';
+      return pathHandler.default();
     }
 
     if (path.includes('/detail')) {
-      const id = path.split(':')[1];
-      return new DetailComponent(id);
+      title.textContent = 'Foodiedie | Detail';
+      return pathHandler.detail(path);
     }
 
     if (path === '/favourite') {
-      return new FavouriteComponent();
+      title.textContent = 'Foodiedie | Favourite';
+      return pathHandler.favourite();
     }
 
-    return new NotFound();
+    if (path.includes('/search')) {
+      title.textContent = 'Foodiedie | Search';
+      return pathHandler.searchPage(path);
+    }
+
+    return pathHandler.notFound();
   };
 
   go(path)  {

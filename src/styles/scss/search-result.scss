@@ -1,0 +1,20 @@
+.search-result-container {
+
+  .search-btn {
+    margin-right: 1.5rem;
+  }
+}
+
+.search-title {
+  margin: 2rem 0 0 3rem;
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-primary);
+}
+
+.search-zero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  height: 60vh;
+}

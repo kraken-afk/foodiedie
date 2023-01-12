@@ -1,4 +1,4 @@
-import { RESTAURANT_LIST_URL, DETAIL_RESTAURANT_ID } from '@global/config';
+import { RESTAURANT_LIST_URL, DETAIL_RESTAURANT_ID, SEARCH_URL } from '@global/config';
 
 const getRestaurant = {
   async list() {
@@ -13,6 +13,12 @@ const getRestaurant = {
 
   async fetch(url, options) {
     const response = await fetch(url, options);
+    const responseJson = await response.json();
+    return responseJson;
+  },
+
+  async search(query) {
+    const response = await fetch(SEARCH_URL + query);
     const responseJson = await response.json();
     return responseJson;
   }

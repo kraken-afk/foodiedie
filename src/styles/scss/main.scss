@@ -355,7 +355,7 @@ h6 {
     max-width: 800px;
     margin-inline: auto;
     width: 100%;
-    margin-bottom: 8rem;
+    margin-bottom: 4rem;
   }
 
   &__title {
@@ -719,3 +719,4 @@ div.blured {
 @import './detail-page.scss';
 @import './favourite-page.scss';
 @import './swal-custom.scss';
+@import './search-result.scss';

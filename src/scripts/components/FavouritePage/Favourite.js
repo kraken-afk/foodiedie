@@ -4,6 +4,7 @@ import createLoader from '@utils/components/loader';
 import openLocalDb from '@utils/indexedDb';
 import '../NavBar';
 import '@utils/components/backButton';
+import '@utils/components/errorMessage';
 
 class FavouritePage extends LitElement {
   static properties = {
@@ -46,6 +47,14 @@ class FavouritePage extends LitElement {
       </div>
       `;
     }
+
+    if (this.data.error) {
+      return html`
+      <error-message></error-message>
+      <back-button></back-button>
+      `;
+    }
+
     window.scrollTo({ top: 0 });
 
     return html`

@@ -6,6 +6,7 @@ import mapSvg from '@images/bx-map.svg';
 import starSvg from '@images/bxs-star.svg';
 import CommentSection from "./CommentSection";
 import openLocalDb from "@utils/indexedDb";
+import '@utils/components/errorMessage';
 
 class DetailPage extends LitElement {
   static properties = {
@@ -92,6 +93,14 @@ class DetailPage extends LitElement {
       </div>
       `;
     }
+
+    if (this.data.error) {
+      return html`
+      <error-message></error-message>
+      <back-button></back-button>
+      `;
+    }
+
     window.scrollTo({ top: 0 });
 
     const { restaurant: {
@@ -124,7 +133,7 @@ class DetailPage extends LitElement {
     </div>
     <span class="reviews-title">Reviews</span>
     ${new CommentSection(customerReviews).render()}
-    <button @click=${this.favouriteClickHandler} data-isfav="0" id="favouriteBtn">
+    <button @click=${this.favouriteClickHandler} data-isfav="0" id="favouriteBtn" aria-label="favourite button">
       <svg xmlns='http://www.w3.org/2000/svg'
         viewBox='0 0 24 24' fill='#000000'
         width='24' height='24'>

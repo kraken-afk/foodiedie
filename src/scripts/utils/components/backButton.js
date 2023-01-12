@@ -14,7 +14,7 @@ class BackButton extends LitElement {
   }
 
   render() {
-    return html`<button @click=${this.clickHandler}>
+    return html`<button @click=${this.clickHandler} aria-label="back to previous page">
       <svg xmlns='http://www.w3.org/2000/svg'
         viewBox='0 0 24 24' fill='#000000'
         width='24' height='24'>
