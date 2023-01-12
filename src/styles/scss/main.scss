@@ -82,6 +82,8 @@ img {
   --real-header-1: #fefae0ff;
   --real-header-2: #ccd5ae;
 
+  --span-header-one: #fefae0ff;
+
   --bg-badge: var(--header-third);
 
   background-color: var(--bg-primary);
@@ -106,6 +108,8 @@ img {
 
   --real-header-1: #11111b;
   --real-header-2: #1e1e2e;
+
+  --span-header-one: #11111b;
 
   --bg-badge: var(--c-dark-text-primary);
 
@@ -237,15 +241,16 @@ h6 {
   }
 
   &__menu-btn {
-    width: 44px;
-    height: 44px;
-    padding: 7px;
-    border-radius: 8px;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: end;
+
+    width: 44px;
+    height: 44px;
+    padding: 7px;
+    border: none;
+    border-radius: 8px;
 
     position: absolute;
     right: 6%;
@@ -258,6 +263,7 @@ h6 {
     visibility: hidden;
     cursor: pointer;
 
+    background-color: var(--bg-primary);
 
     &__line {
       width: 100%;
@@ -308,14 +314,14 @@ h6 {
     }
 
     & span:first-child {
-      color: var(--real-header-1);
+      color: var(--span-header-one);
       background-color: var(--real-header-2);
       width: min-content;
     }
 
     & span:last-child {
       color: var(--real-header-2);
-      background-color: var(--real-header-1);
+      background-color: var(--span-header-one);
       margin-left: calc(48% + 1px);
       width: max-content;
     }

@@ -1,7 +1,7 @@
 import { LitElement, html } from 'lit';
 import getRestaurant from '@utils/getRestaurant';
 import RestaurantCard from '@utils/components/Card';
-import createLoader  from '@utils/components/loader';
+import createLoader from '@utils/components/loader';
 import '@utils/components/errorMessage';
 
 export default class RestaurantList extends LitElement {
@@ -15,7 +15,9 @@ export default class RestaurantList extends LitElement {
     this.classList.add('list');
 
     getRestaurant.list()
-      .then((res) => this.data = res);
+      .then((res) => {
+        this.data = res;
+      });
   }
 
   createRenderRoot() {

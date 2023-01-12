@@ -2,7 +2,7 @@ import { RESTAURANT_LIST_URL, DETAIL_RESTAURANT_ID, SEARCH_URL } from '@global/c
 
 const getRestaurant = {
   async list() {
-    const response = await this.fetch(RESTAURANT_LIST_URL, { method: 'GET'});
+    const response = await this.fetch(RESTAURANT_LIST_URL, { method: 'GET' });
     return response;
   },
 
@@ -21,7 +21,7 @@ const getRestaurant = {
     const response = await fetch(SEARCH_URL + query);
     const responseJson = await response.json();
     return responseJson;
-  }
+  },
 };
 
 export default getRestaurant;

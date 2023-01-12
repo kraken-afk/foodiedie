@@ -20,7 +20,7 @@ class Footer extends LitElement {
   render() {
     return html`
       <footer class="footer" tabindex="0">
-        <button @click=${this.themeClickHandler} aria-disabled="true" id="theme-btn" class="theme-light">
+        <button @click=${this.themeClickHandler} aria-disabled="true" aria-label="switch visual theme" id="theme-btn" class="theme-light">
           <svg xmlns='http://www.w3.org/2000/svg'
             viewBox='0 0 24 24' fill='#000000'
             width='24' height='24'>

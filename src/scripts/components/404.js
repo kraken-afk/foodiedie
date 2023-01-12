@@ -1,4 +1,4 @@
-import { LitElement, html } from "lit";
+import { LitElement, html } from 'lit';
 
 export default class NotFound extends LitElement {
   createRenderRoot() { return this; }

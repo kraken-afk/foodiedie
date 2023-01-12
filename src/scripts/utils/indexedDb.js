@@ -2,14 +2,13 @@ import { DB_NAME } from '@global/config';
 
 // TODO: make it more efficient by create independent module
 
-function openDbPromise()  {
+function openDbPromise() {
   return new Promise((resolve, reject) => {
-    const indexedDB =
-      window.indexedDB ||
-      window.mozIndexedDB ||
-      window.webkitIndexedDB ||
-      window.msIndexedDB ||
-      window.shimIndexedDB;
+    const indexedDB = window.indexedDB
+      || window.mozIndexedDB
+      || window.webkitIndexedDB
+      || window.msIndexedDB
+      || window.shimIndexedDB;
 
     const request = indexedDB.open(DB_NAME, 1);
 
@@ -19,83 +18,77 @@ function openDbPromise()  {
       window.onunload = () => db.close();
       resolve(({
         add(data) {
-          const transaction = db.transaction('restaurants', 'readwrite')
+          const transaction = db.transaction('restaurants', 'readwrite');
           const objectStore = transaction.objectStore('restaurants');
-          const request = objectStore.add(data);
+          const requestCurrentScope = objectStore.add(data);
 
-          request.onsuccess = () => {
-            resolve(request.result);
+          requestCurrentScope.onsuccess = () => {
+            resolve(requestCurrentScope.result);
           };
 
-          request.onerror = () => {
-            console.error(request);
-            reject(request.result);
+          requestCurrentScope.onerror = () => {
+            reject(requestCurrentScope.result);
           };
         },
 
         get(id) {
-          return new Promise((resolve, reject) => {
-            const transaction = db.transaction('restaurants', 'readonly')
+          return new Promise((_resolve, _reject) => {
+            const transaction = db.transaction('restaurants', 'readonly');
             const objectStore = transaction.objectStore('restaurants');
-            const request = objectStore.get(id);
+            const requestCurrentScope = objectStore.get(id);
 
-
-            request.onsuccess = () => {
-              resolve(request.result);
+            requestCurrentScope.onsuccess = () => {
+              _resolve(requestCurrentScope.result);
             };
 
-            request.onerror = () => {
-              console.error(request);
-              reject(request.result);
+            requestCurrentScope.onerror = () => {
+              _reject(requestCurrentScope.result);
             };
           });
         },
 
         getAll() {
-          return new Promise((resolve, reject) => {
-            const transaction = db.transaction('restaurants', 'readonly')
+          return new Promise((_resolve, _reject) => {
+            const transaction = db.transaction('restaurants', 'readonly');
             const objectStore = transaction.objectStore('restaurants');
-            const request = objectStore.getAll();
+            const requestCurrentScope = objectStore.getAll();
 
-            request.onsuccess = () => {
-              resolve(request.result);
+            requestCurrentScope.onsuccess = () => {
+              _resolve(requestCurrentScope.result);
             };
 
-            request.onerror = () => {
-              console.error(request);
-              reject(request.result);
+            requestCurrentScope.onerror = () => {
+              _reject(requestCurrentScope.result);
             };
           });
         },
 
         remove(id) {
-          const transaction = db.transaction('restaurants', 'readwrite')
+          const transaction = db.transaction('restaurants', 'readwrite');
           const objectStore = transaction.objectStore('restaurants');
-          const request = objectStore.delete(id);
+          const requestCurrentScope = objectStore.delete(id);
 
-          request.onsuccess = () => {
-            resolve(request.result);
+          requestCurrentScope.onsuccess = () => {
+            resolve(requestCurrentScope.result);
           };
 
-          request.onerror = () => {
-            console.error(request);
-            reject(request.result);
+          requestCurrentScope.onerror = () => {
+            reject(requestCurrentScope.result);
           };
         },
 
         search(name) {
-          const transaction = db.transaction('restaurants', 'readonly')
+          const transaction = db.transaction('restaurants', 'readonly');
           const objectStore = transaction.objectStore('restaurants');
           const index = objectStore.index('name');
-          const request = index.get(name);
+          const requestCurrentScope = index.get(name);
 
-          request.onsuccess = () => {
-            resolve(request.result);
+          requestCurrentScope.onsuccess = () => {
+            resolve(requestCurrentScope.result);
           };
 
-          request.onerror = () => {
-            console.error(request);
-            reject(request.result);
+          requestCurrentScope.onerror = () => {
+            reject(requestCurrentScope.result);
           };
         },
 
@@ -106,10 +99,7 @@ function openDbPromise()  {
     };
 
     request.onerror = (error) => {
-      reject({
-        message: 'an error occured while opening IndexedDb',
-        ...error,
-      });
+      reject(error);
     };
 
     request.onupgradeneeded = ({ target }) => {
@@ -124,8 +114,8 @@ function openDbPromise()  {
 export default async function openLocalDb() {
   try {
     const db = await openDbPromise()
-      .then(db => db)
-      .catch(err => err);
+      .then((response) => response)
+      .catch((err) => err);
     return db;
   } catch (error) {
     return error;

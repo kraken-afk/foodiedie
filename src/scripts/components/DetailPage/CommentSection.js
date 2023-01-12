@@ -1,4 +1,4 @@
-import { html } from "lit";
+import { html } from 'lit';
 
 export default class CommentSection {
   constructor(data) {
@@ -6,11 +6,9 @@ export default class CommentSection {
   }
 
   render() {
-
     return html`
     <div class="comment-section-container">
-      ${this.data.map(({ name, date, review }) => {
-        return html`
+      ${this.data.map(({ name, date, review }) => html`
           <div class="comment-section">
             <div class="comment-section__header">
               <span class="comment-section__header__name truncate-one">${name}</span>
@@ -18,8 +16,7 @@ export default class CommentSection {
             </div>
             <p class="comment-section__review">${review}</p>
           </div>
-        `;
-      })}
+        `)}
     </div>`;
   }
 }

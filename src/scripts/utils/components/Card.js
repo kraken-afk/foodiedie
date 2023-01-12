@@ -12,14 +12,14 @@ export default class RestaurantCard extends LitElement {
 
   clickHandler(event) {
     event.preventDefault();
-    const { id } = event.target.dataset
-    Route.go('/detail/' + id);
+    const { id } = event.target.dataset;
+    Route.go(`/detail/${id}`);
   }
 
   render() {
     if (!this.data) throw new TypeError('`data` attribute cannot be empty');
     const {
-      name, description, city, pictureId: source, rating, id
+      name, description, city, pictureId: source, rating, id,
     } = this.data;
 
     return html`

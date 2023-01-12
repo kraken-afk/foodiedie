@@ -63,7 +63,7 @@ class NavBar extends LitElement {
 
   favouriteClickHandler(event) {
     event.preventDefault();
-    const pathname = event.target.pathname;
+    const { pathname } = event.target;
     const menuBtn = document.querySelector('.nav__menu-btn');
 
     if (menuBtn.classList.contains('active')) menuBtn.click();
@@ -78,10 +78,10 @@ class NavBar extends LitElement {
             <img width="32" src=${svgLeaf} alt="Foodiedie Logo" />
           </span>
           </a>
-          <div @click=${this.menuBtnClickHandler} @keydown=${this.keydownHandler} tabindex="0" class="nav__menu-btn" aria-label="menu button, ${this.menuBtnStatus ? 'opened' : 'closed'}, click enter to ${!this.menuBtnStatus ? 'open' : 'close'} ${this.menuBtnStatus ? 'and click tab for navigation' : ''}">
+          <button @click=${this.menuBtnClickHandler} @keydown=${this.keydownHandler} class="nav__menu-btn" aria-label="menu button, ${this.menuBtnStatus ? 'opened' : 'closed'}, click enter to ${!this.menuBtnStatus ? 'open' : 'close'} ${this.menuBtnStatus ? 'and click tab for navigation' : ''}">
               <div class="nav__menu-btn__line"></div>
               <div class="nav__menu-btn__line"></div>
-          </div>
+          </button>
           <div class="nav__list">
             <a href="/" class="nav__item">
               <img alt="Home navigation icon" src=${homeSvg}/> Home

@@ -8,16 +8,16 @@ import '@utils/components/errorMessage';
 
 class FavouritePage extends LitElement {
   static properties = {
-    data: { attribute: false, type: Array}
+    data: { attribute: false, type: Array },
+  };
+
+  constructor() {
+    super();
+    this.data = null;
+    this.db = null;
   }
 
- constructor()  {
-  super();
-  this.data = null;
-  this.db = null;
- }
-
- createRenderRoot() { return this; }
+  createRenderRoot() { return this; }
 
   connectedCallback() {
     super.connectedCallback();
@@ -63,9 +63,9 @@ class FavouritePage extends LitElement {
       <h1 class="favourite-page__title">Your favourite restaurant's</h1>
       <div class="list">
         ${
-          !this.data.length ? html`<h2 class="favourite-page__zero">Nothing here</h2>` :
-          this.data.map((item) => this.createCard(item))
-        }
+  !this.data.length ? html`<h2 class="favourite-page__zero">Nothing here</h2>`
+    : this.data.map((item) => this.createCard(item))
+}
       </div>
     </div>
     <back-button></back-button>

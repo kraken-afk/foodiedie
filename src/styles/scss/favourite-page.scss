@@ -16,3 +16,54 @@
     line-height: 900%;
   }
 }
+
+.form-review {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  max-width: 500px;
+}
+
+.form-title{
+  font-size: 1.5rem;
+  color: var(--text-p);
+  margin-bottom: 1rem;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    color: var(--text-p);
+  }
+
+  input {
+    padding: .4rem .5rem;
+    font-size: .8rem;
+    color: var(--text-p);
+    background-color: var(--header-third);
+    border: none;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  &-textarea {
+    textarea {
+      display: block;
+      padding: .4rem .5rem;
+      font-size: .8rem;
+      color: var(--text-p);
+      background-color: var(--header-third);
+      border: none;
+      border-radius: 6px;
+      width: 100%;
+      font-family: 'Poppins', sans-serif;
+    }
+  }
+}
+
+.submit-btn {
+  @include buttonPrimary;
+}

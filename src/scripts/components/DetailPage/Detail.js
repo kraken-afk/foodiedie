@@ -1,24 +1,27 @@
-import { LitElement, html } from "lit";
-import { PICTURE_MEDIUM_ID } from '@global/config';
+import { LitElement, html } from 'lit';
+import { PICTURE_MEDIUM_ID, REVIEW_ENDPOINT } from '@global/config';
 import getRestaurant from '@utils/getRestaurant';
 import createLoader from '@utils/components/loader';
 import mapSvg from '@images/bx-map.svg';
 import starSvg from '@images/bxs-star.svg';
-import CommentSection from "./CommentSection";
-import openLocalDb from "@utils/indexedDb";
+import openLocalDb from '@utils/indexedDb';
+import swal from 'sweetalert';
+import CommentSection from './CommentSection';
 import '@utils/components/errorMessage';
 
 class DetailPage extends LitElement {
   static properties = {
     data: { attribute: false, type: Object },
     code: { attribute: true, type: 'string' },
-  }
+    commentSection: { attribute: false },
+  };
 
   constructor() {
     super();
     this.code = null;
     this.data = null;
     this.db = null;
+    this.commentSection = null;
     this.openDb();
   }
 
@@ -26,10 +29,8 @@ class DetailPage extends LitElement {
     try {
       const db = await openLocalDb();
       this.db = db;
-    }
-    catch {
+    } catch {
       this.db = null;
-      console.log('err');
     }
   }
 
@@ -37,14 +38,18 @@ class DetailPage extends LitElement {
     super.connectedCallback();
 
     getRestaurant.detail(this.code)
-      .then((res) => this.data = res)
-      .then(async () => {
+      .then((res) => {
+        this.commentSection = res.restaurant.customerReviews;
+        this.data = res;
+      })
+      .then(() => {
         const { id } = this.data.restaurant;
         const { db } = this;
         const favBtn = document.getElementById('favouriteBtn');
-        const result = await db.get(id) ? 1 : 0;
-        favBtn.dataset.isfav = result
+        const result = db.get(id) ? 1 : 0;
+        favBtn.dataset.isfav = result;
       });
+    window.scrollTo({ top: 0 });
   }
 
   disconnectedCallback() {
@@ -60,16 +65,15 @@ class DetailPage extends LitElement {
       <div class="detail-card">
         <span class="detail-card__title">${title}</span>
           <ul class="detail-card__list">
-            ${data.map(({ name }) =>
-                html`<li class="detail-card__list__item">
-                  ${ name }
+            ${data.map(({ name }) => html`<li class="detail-card__list__item">
+                  ${name}
                 </li>`)}
           </ul>
       </div>
     `;
   }
 
-  async favouriteClickHandler({ target }) {
+  async favouriteClickHandler() {
     if (this.db === null) return;
 
     const favBtn = document.getElementById('favouriteBtn');
@@ -83,6 +87,47 @@ class DetailPage extends LitElement {
       await db.add(restaurant);
       favBtn.dataset.isfav = 1;
     }
+  }
+
+  submitHandler(event) {
+    event.preventDefault();
+    const payload = {
+      id: this.getAttribute('code'),
+      name: document.getElementById('name').value,
+      review: document.getElementById('review').value,
+    };
+
+    this.POSTHandler(payload)
+      .then((response) => {
+        const { error, customerReviews } = response;
+        if (error) {
+          swal({
+            title: 'Something went wrong',
+            text: 'Couldn\'t send review',
+            icon: 'warning',
+          });
+        } else {
+          swal({
+            title: 'review submitted',
+            icon: 'info',
+          });
+          this.commentSection = customerReviews;
+          document.getElementById('name').value = '';
+          document.getElementById('review').value = '';
+        }
+      });
+  }
+
+  async POSTHandler(payload) {
+    const response = await fetch(REVIEW_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+
+    return response.json();
   }
 
   render() {
@@ -101,13 +146,13 @@ class DetailPage extends LitElement {
       `;
     }
 
-    window.scrollTo({ top: 0 });
-
-    const { restaurant: {
-      name, description, city, id,
-      address, pictureId, rating,
-      categories, menus, customerReviews
-    } } = this.data;
+    const {
+      restaurant: {
+        name, description, city,
+        address, pictureId, rating,
+        categories, menus,
+      },
+    } = this.data;
 
     const { foods, drinks } = menus;
 
@@ -132,7 +177,17 @@ class DetailPage extends LitElement {
       ${this.createCard(drinks, 'drinks')}
     </div>
     <span class="reviews-title">Reviews</span>
-    ${new CommentSection(customerReviews).render()}
+    ${new CommentSection(this.commentSection).render()}
+    <form @submit=${this.submitHandler} action="POST" class="form-review">
+      <span class="form-title">Add review</span>
+        <div class="input-wrapper">
+          <input required type="text" id="name" placeholder="Your name.."/>
+        </div>
+        <div class="input-wrapper-textarea">
+          <textarea required placeholder="Review.." id="review" name="review" cols="50" rows="5"></textarea>
+        </div>
+        <button class="submit-btn">Submit</button>
+      </form>
     <button @click=${this.favouriteClickHandler} data-isfav="0" id="favouriteBtn" aria-label="favourite button">
       <svg xmlns='http://www.w3.org/2000/svg'
         viewBox='0 0 24 24' fill='#000000'
@@ -142,9 +197,8 @@ class DetailPage extends LitElement {
         </path>
       </svg>
     </button>
-    <back-button></back-button>
+    <back-button ></back-button>
     `;
-
   }
 }
 

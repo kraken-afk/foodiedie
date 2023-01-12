@@ -4,7 +4,6 @@ import HomeComponent from '../components/HomePage';
 import FavouriteComponent from '../components/FavouritePage';
 import SearchPageComponent from '../components/SearchPage';
 
-
 class RouteProxy {
   constructor() {
     this.location = window.location.pathname;
@@ -28,7 +27,7 @@ class RouteProxy {
   map(path) {
     if (path.includes('detail')) {
       const id = path.split('/').filter(Boolean)[1];
-      return '/detail:' + id;
+      return `/detail:${id}`;
     }
     return path;
   }
@@ -58,9 +57,9 @@ class RouteProxy {
     }
 
     return pathHandler.notFound();
-  };
+  }
 
-  go(path)  {
+  go(path) {
     window.history.pushState(path, 'route', path);
     this.location = this.map(path);
   }
@@ -71,7 +70,7 @@ class RouteProxy {
 
   async onchange(callback) {
     const { watch } = await import('melanke-watchjs');
-    watch(Route, 'location', callback);
+    watch(this, 'location', callback);
   }
 
   onpopstateHandler(event) {
@@ -86,5 +85,5 @@ class RouteProxy {
   }
 }
 
-const Route = new RouteProxy;
+const Route = new RouteProxy();
 export default Route;

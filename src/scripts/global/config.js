@@ -5,3 +5,4 @@ export const PICTURE_MEDIUM_ID = 'https://restaurant-api.dicoding.dev/images/med
 export const PICTURE_LARGE_ID = 'https://restaurant-api.dicoding.dev/images/large/';
 export const DB_NAME = 'FAVOURITE_RESTAURANT';
 export const SEARCH_URL = 'https://restaurant-api.dicoding.dev/search?q=';
+export const REVIEW_ENDPOINT = 'https://restaurant-api.dicoding.dev/review';

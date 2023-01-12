@@ -9,11 +9,11 @@ export default function installPrompt() {
         icon: 'info',
         title: 'Install Foodiedie',
         text: 'Add Foodiedie to your homescreen for best experience',
-        buttons: ['nah.. im good', 'install']
+        buttons: ['nah.. im good', 'install'],
       }).then((value) => {
         if (value) defferedPrompt.prompt();
-        defferedPrompt= null;
-      })
+        defferedPrompt = null;
+      });
     }, 4000);
   });
 }

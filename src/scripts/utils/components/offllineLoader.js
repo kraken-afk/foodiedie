@@ -1,7 +1,7 @@
 import { LitElement, html } from 'lit';
 
 class offlineLoader extends LitElement {
-  createRenderRoot() { return this }
+  createRenderRoot() { return this; }
 
   render() {
     return html`
@@ -14,7 +14,7 @@ class offlineLoader extends LitElement {
     </svg>
     <p>You're offline</p>
     </div>
-    `
+    `;
   }
 }
 

@@ -22,8 +22,18 @@
 .swal-button--cancel {
   background-color: var(--header-third);
   color: var(--text-p);
+  border: 1.5px solid var(--card-button);
 
   &:hover {
       background-color: rgba(var(--header-third), .6) !important;
     }
+}
+
+.swal-icon--info:after,
+.swal-icon--info:before {
+  background-color: var(--text-primary);
+}
+
+.swal-icon--info {
+  border-color: var(--text-primary);
 }

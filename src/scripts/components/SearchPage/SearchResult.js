@@ -1,13 +1,13 @@
-import { LitElement, html } from "lit";
-import createLoader from "@utils/components/loader";
-import getRestaurant from "@utils/getRestaurant";
-import RestaurantCard from '@utils/components/Card'
+import { LitElement, html } from 'lit';
+import createLoader from '@utils/components/loader';
+import getRestaurant from '@utils/getRestaurant';
+import RestaurantCard from '@utils/components/Card';
 import '@utils/components/errorMessage';
 
 class SearchReult extends LitElement {
   static properties = {
     query: { attribute: true, type: 'string' },
-    data: { attribute: false, type: Object }
+    data: { attribute: false, type: Object },
   };
 
   constructor() {
@@ -31,7 +31,6 @@ class SearchReult extends LitElement {
 
   async getData() {
     const response = await getRestaurant.search(this.query);
-    console.log()
     this.data = response;
   }
 
@@ -55,10 +54,10 @@ class SearchReult extends LitElement {
       <search-bar></search-bar>
       <div class="list">
         ${
-          !restaurants.length ?
-            html`<p class="search-zero">Sorry, no result for '${this.query}'</p>` :
-            restaurants.map((restaurant) => this.createCard(restaurant))
-        }
+  !restaurants.length
+    ? html`<p class="search-zero">Sorry, no result for '${this.query}'</p>`
+    : restaurants.map((restaurant) => this.createCard(restaurant))
+}
       </div>
       <back-button></back-button>
     `;

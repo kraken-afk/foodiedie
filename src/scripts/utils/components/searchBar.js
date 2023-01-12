@@ -1,6 +1,5 @@
 import { LitElement, html } from 'lit';
 import swal from 'sweetalert';
-import getRestaurant from '@utils/getRestaurant';
 import Route from '@routes/route';
 
 class SearchBar extends LitElement {
@@ -11,19 +10,19 @@ class SearchBar extends LitElement {
       title: 'Search Restaurant',
       buttons: {
         cancel: true,
-        confirm: 'Search'
+        confirm: 'Search',
       },
       content: {
         element: 'input',
         attributes: {
           placeholder: 'Search restaurant by name, category or menus',
-        }
+        },
       },
     })
       .then((query) => {
         if (!query) return;
-        Route.go('/search?q=' + query.toLowerCase());
-      })
+        Route.go(`/search?q=${query.toLowerCase()}`);
+      });
   }
 
   render() {

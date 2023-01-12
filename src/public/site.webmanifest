@@ -1,5 +1,6 @@
 {
   "start_url": "/",
+  "scope": "/",
   "name": "Foodiedie Restaurant App",
   "short_name": "Foodiedie",
   "description": "Provide list of healthy restaurant near your area.",
