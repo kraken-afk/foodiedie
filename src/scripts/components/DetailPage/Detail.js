@@ -42,11 +42,11 @@ class DetailPage extends LitElement {
         this.commentSection = res.restaurant.customerReviews;
         this.data = res;
       })
-      .then(() => {
+      .then(async () => {
         const { id } = this.data.restaurant;
         const { db } = this;
         const favBtn = document.getElementById('favouriteBtn');
-        const result = db.get(id) ? 1 : 0;
+        const result = await db.get(id) ? 1 : 0;
         favBtn.dataset.isfav = result;
       });
     window.scrollTo({ top: 0 });

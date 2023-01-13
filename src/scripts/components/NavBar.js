@@ -30,6 +30,8 @@ class NavBar extends LitElement {
   }
 
   menuBtnClickHandler(event) {
+    event.preventDefault();
+
     const navList = document.querySelector('.nav__list');
     const btn = document.querySelector('.nav__menu-btn');
     const div = document.createElement('div');
@@ -55,6 +57,8 @@ class NavBar extends LitElement {
   }
 
   keydownHandler(event) {
+    event.preventDefault();
+
     if (event.key === 'Enter') {
       event.target.click();
       this.menuBtnStatus = !this.menuBtnStatus;
@@ -78,7 +82,7 @@ class NavBar extends LitElement {
             <img width="32" src=${svgLeaf} alt="Foodiedie Logo" />
           </span>
           </a>
-          <button @click=${this.menuBtnClickHandler} @keydown=${this.keydownHandler} class="nav__menu-btn" aria-label="menu button, ${this.menuBtnStatus ? 'opened' : 'closed'}, click enter to ${!this.menuBtnStatus ? 'open' : 'close'} ${this.menuBtnStatus ? 'and click tab for navigation' : ''}">
+          <button @click=${this.menuBtnClickHandler} @keypress=${this.keydownHandler} class="nav__menu-btn" aria-label="menu button, ${this.menuBtnStatus ? 'opened' : 'closed'}, click enter to ${!this.menuBtnStatus ? 'open' : 'close'} ${this.menuBtnStatus ? 'and click tab for navigation' : ''}">
               <div class="nav__menu-btn__line"></div>
               <div class="nav__menu-btn__line"></div>
           </button>
