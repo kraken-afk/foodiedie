@@ -125,7 +125,7 @@ search-bar {
   justify-content: center;
   border: 2.5px solid var(--text-primary);
   border-radius: 30px;
-  padding: .3rem;
+  padding: .45rem;
   padding-right: 2.5rem;
   margin-block: 1.5rem;
 
@@ -143,6 +143,7 @@ search-bar {
   }
 
   svg {
+    scale: 1.2;
     fill: var(--text-p);
   }
 }
@@ -176,6 +177,11 @@ search-bar {
 
   font-size: clamp(1.8rem, 5vw, 2.5rem);
   height: calc(99vh - 217px);
+}
+
+.swal-button {
+  padding-block: .8rem;
+  padding-inline: 30px;
 }
 
 @keyframes rotate {
