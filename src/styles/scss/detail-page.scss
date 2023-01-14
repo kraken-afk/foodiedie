@@ -116,6 +116,7 @@
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 1rem;
   max-width: 1300px;
+  width: 100%;
 }
 
 .comment-section {
@@ -225,5 +226,16 @@
         }
       }
     }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .comment-section-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .comment-section {
+    width: 100%;
   }
 }
