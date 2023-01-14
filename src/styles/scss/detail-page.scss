@@ -67,7 +67,7 @@
 
 .lists-container {
   display: grid;;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   max-width: 1300px;
 }
 
@@ -237,5 +237,18 @@
 
   .comment-section {
     width: 100%;
+  }
+
+  .detail-card {
+    &__list {
+      display: flex;
+      flex-direction: column;
+
+      &__item {
+        width: 100%;
+        max-width: none;
+        padding-block: 1rem;
+      }
+    }
   }
 }
