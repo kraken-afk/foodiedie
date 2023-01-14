@@ -59,15 +59,15 @@ class FavouritePage extends LitElement {
 
     return html`
     <nav-bar></nav-bar>
-    <div class="favourite-page">
+    <main class="favourite-page">
       <h1 class="favourite-page__title">Your favourite restaurant's</h1>
-      <div class="list">
+      <div class="list" id="mainContent" tabindex="0">
         ${
   !this.data.length ? html`<h2 class="favourite-page__zero">Nothing here</h2>`
     : this.data.map((item) => this.createCard(item))
 }
       </div>
-    </div>
+    </main>
     <back-button></back-button>
     `;
   }

@@ -16,6 +16,7 @@ class SearchBar extends LitElement {
         element: 'input',
         attributes: {
           placeholder: 'Search restaurant by name, category or menus',
+          'tab-index': 0,
         },
       },
     })
@@ -27,7 +28,8 @@ class SearchBar extends LitElement {
 
   render() {
     return html`
-      <button @click=${this.clickHandler} class="search-btn" aria-label="search restaurant">
+      <button @click=${this.clickHandler} class="search-btn"
+        aria-label="hold Enter, type, and release for search">
         <svg xmlns="http://www.w3.org/2000/svg"
           width="24" height="24"
           viewBox="0 0 24 24">

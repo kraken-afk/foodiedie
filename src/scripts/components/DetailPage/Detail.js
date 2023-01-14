@@ -158,10 +158,10 @@ class DetailPage extends LitElement {
 
     return html`
     <div class="detail__header">
-      <div class="detail__header__description">
+      <main class="detail__header__description" id="mainContent" tabindex="0">
         <h1>${name}</h1>
         <p>${description}</p>
-      </div>
+      </main>
       <figure class="detail__header__figure">
         <img class="detail__header__figure__thumbnail" src="${PICTURE_MEDIUM_ID + pictureId}" alt="image of ${name}" />
         <span aria-label=${`rating: ${rating} star,`} class="detail__header__figure__rating">

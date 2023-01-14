@@ -17,7 +17,7 @@ export default class HomePage extends LitElement {
     </header>
     <nav-bar></nav-bar>
     <main class="main">
-      <article class="main__description" id="main-article" tabindex="0">
+      <article class="main__description" id="mainContent" tabindex="0">
         <h2 id="explore" class="main__title" aria-label="Healthy Restaurant's Nearby,">Healthy Restaurant's Nearby</h2>
         <p class="main__paragraph">Healthy food is important for our body, so we have list of restaurant's that provide healthy food, placed near your area.</p>
         <search-bar></search-bar>

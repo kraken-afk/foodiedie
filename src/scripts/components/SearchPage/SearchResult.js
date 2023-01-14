@@ -52,7 +52,7 @@ class SearchReult extends LitElement {
     return html`
       <h1 class="search-title">Results for ${this.query}</h1>
       <search-bar></search-bar>
-      <div class="list">
+      <div class="list" id="mainContent" tabindex="0">
         ${
   !restaurants.length
     ? html`<p class="search-zero">Sorry, no result for '${this.query}'</p>`
