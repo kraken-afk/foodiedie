@@ -1,4 +1,4 @@
-import { LitElement, html } from 'lit';
+import { LitElement, html, } from 'lit';
 import { PICTURE_MEDIUM_ID, REVIEW_ENDPOINT } from '@global/config';
 import getRestaurant from '@utils/getRestaurant';
 import createLoader from '@utils/components/loader';

@@ -230,6 +230,10 @@
 }
 
 @media screen and (max-width: 576px) {
+  .lists-container {
+    grid-template-columns: 1fr;
+  }
+
   .comment-section-container {
     display: flex;
     flex-direction: column;

@@ -1,3 +1,4 @@
+const webpackConfig = require('./webpack.common');
 // Karma configuration
 // Generated on Fri Jul 03 2020 20:15:52 GMT+0700 (Western Indonesia Time)
 module.exports = function (config) {
@@ -31,6 +32,7 @@ module.exports = function (config) {
       // webpack configuration
       devtool: 'inline-source-map',
       mode: 'development',
+      resolve: webpackConfig.resolve,
     },
 
     webpackMiddleware: {
