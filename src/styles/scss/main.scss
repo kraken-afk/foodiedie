@@ -1,15 +1,10 @@
 @import "./font.scss";
+@import './variable.scss';
 
-/* Colors */
-$pale-spring-bud: #ccd5ae;
-$pale-spring-bud-2: #e9edc9ff;
-$cornsilk: #fefae0ff;
-$cornsilkTransparent: rgba(254, 250, 224, 0.7);
-$papaya-whip: #faedcdff;
-$fawn: #d4a373ff;
-$seagreen: #2e8b57;
-$dark: #020202;
-$light: #fff;
+$font-primary: 'Poppins', sans-serif;
+$font-secondary: 'Italiana', serif;
+$touch-target-padding: .5rem;
+$touch-hover-transition: all .2s ease-out;
 
 /* style */
 * {
@@ -29,101 +24,12 @@ img {
   display: block;
 }
 
-:root {
-  font-size: 18px;
-
-  --c-light-bg-primary: #fefae0ff;
-  --c-light-bg-secondary: #2e8b57;
-  --c-light-bg-third: #faedcdff;
-  --c-light-bg-transparent: rgba(254, 250, 224, 0.7);
-
-  --c-light-text-primary: #2e8b57;
-  --c-light-text-secondary: #020202;
-  --c-light-text-dark: #020202;
-  --c-light-text-dark-opacity: #0202020d;
-
-  --c-light-header-primary: #fefae0ff;
-  --c-light-header-secondary: #ccd5ae;
-  --c-light-header-third: #e9edc9ff;
-
-
-  --c-dark-bg-primary: #151522;
-  --c-dark-bg-secondary: #6c7086;
-  --c-dark-bg-third: #b4befe;
-  --c-dark-bg-transparent: #11111b79;
-
-  --c-dark-text-primary: #a6e3a1;
-  --c-dark-text-secondary: #cdd6f4;
-  --c-dark-text-dark: #cdd6f4;
-  --c-dark-text-dark-opacity: #cdd6f485;
-
-  --c-dark-header-primary: #b4befe;
-  --c-dark-header-secondary: #1e1e2e;
-  --c-dark-header-third: #11111b;
-}
-
-.light {
-  --bg-primary: var(--c-light-bg-primary);
-  --bg-secondary: var(--c-light-bg-secondary);
-  --bg-third: var(--c-light-bg-third);
-  --bg-transparent: var(--c-light-bg-transparent);
-
-  --text-primary: var(--c-light-text-primary);
-  --text-secondary: var(--c-light-text-secondary);
-  --text-p: var(--c-light-text-dark);
-  --text-p-opacity: var(--c-light-text-dark-opacity);
-
-  --header-primary: var(--c-light-header-primary);
-  --header-secondary: var(--c-light-header-secondary);
-  --header-third: var(--c-light-header-third);
-
-  --card-button: #2e8b57;
-
-  --real-header-1: #fefae0ff;
-  --real-header-2: #ccd5ae;
-
-  --span-header-one: #fefae0ff;
-
-  --bg-badge: var(--header-third);
-
-  background-color: var(--bg-primary);
-}
-
-.dark {
-  --bg-primary: var(--c-dark-bg-primary);
-  --bg-secondary: var(--c-dark-bg-secondary);
-  --bg-third: var(--c-dark-bg-third);
-  --bg-transparent: var(--c-dark-bg-transparent);
-
-  --text-primary: var(--c-dark-text-primary);
-  --text-secondary: var(--c-dark-text-secondary);
-  --text-p: var(--c-dark-text-dark);
-  --text-p-opacity: var(--c-dark-text-dark-opacity);
-
-  --header-primary: var(--c-dark-header-primary);
-  --header-secondary: var(--c-dark-header-secondary);
-  --header-third: var(--c-dark-header-third);
-
-  --card-button: #89b4fa;
-
-  --real-header-1: #11111b;
-  --real-header-2: #1e1e2e;
-
-  --span-header-one: #11111b;
-
-  --bg-badge: var(--c-dark-text-primary);
-
-  background-color: var(--bg-primary);
-}
-
 :any-link {
   text-decoration: none;
   color: inherit;
   font-weight: 500;
 }
 
-$touch-target-padding: .5rem;
-$touch-hover-transition: all .2s ease-out;
 @import './mixins.scss';
 
 p {
@@ -286,7 +192,7 @@ h6 {
 
 /* header */
 .header {
-  background-image: url("../../public/images/heros/hero-image_1.webp");
+  background-image: url("../../public/images/heros/hero-image_1-desktop.webp");
   background-position: center;
   background-size: cover;
 
@@ -614,6 +520,10 @@ div.blured {
 /* mobile phone breakpoint */
 
 @media screen and (max-width: 633px) {
+  .header {
+    background-image: url("../../public/images/heros/hero-image_1-mobile.webp");
+  }
+
   .card {
     max-width: 85vw;
 
@@ -716,7 +626,5 @@ div.blured {
   }
 }
 
-@import './detail-page.scss';
-@import './favourite-page.scss';
 @import './swal-custom.scss';
 @import './search-result.scss';

@@ -1,5 +1,6 @@
 import { html } from 'lit';
 import './Detail';
+import '@scss/detail-page.scss';
 
 export default class DetailComponent {
   constructor(id) {

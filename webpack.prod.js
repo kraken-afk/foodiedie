@@ -1,5 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common');
 
@@ -28,7 +29,12 @@ module.exports = merge(common, {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'main.[fullhash].css',
+      filename: 'styles/[name].[fullhash].css',
     })
   ],
+  optimization: {
+    minimizer: [
+      new CssMinimizerPlugin(),
+    ]
+  }
 });

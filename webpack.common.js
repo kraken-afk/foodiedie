@@ -3,6 +3,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const AssetListWebpackPlugin = require('asset-list-webpack-plugin');
+const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
+const ImageminOptiPng = require('imagemin-optipng');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
@@ -11,8 +13,8 @@ module.exports = {
     sw: path.resolve(__dirname, 'src/scripts/sw.js'),
   },
   output: {
-    filename: (pathData) => {
-      return pathData.chunk.name === 'app' ? 'app.bundle.js' : 'sw.js';
+    filename: ({ runtime }) => {
+      return RegExp(/^sw$/).test(runtime) ? '[name].js' : 'js/[name].js';
     },
     path: path.resolve(__dirname, 'dist'),
     clean: true,
@@ -57,6 +59,21 @@ module.exports = {
       name: 'ls',
       format: 'array',
     }),
+    new ImageminWebpackPlugin({
+      plugins: [
+        (async () => {
+          const { default: ImageminWebp } = await import('imagemin-webp');
+          return ImageminWebp({
+            quality: 50,
+            progressive: true,
+          });
+        })(),
+        ImageminOptiPng({
+          quality: 30,
+          progressive: true,
+        }),
+      ],
+    }),
   ],
   resolve: {
     alias: {
@@ -67,6 +84,29 @@ module.exports = {
       '@utils': path.resolve(__dirname, 'src/scripts/utils'),
       '@routes': path.resolve(__dirname, 'src/scripts/routes'),
       '@public': path.resolve(__dirname, 'src/public'),
+    },
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      minSize: 20000,
+      maxSize: 70000,
+      minChunks: 1,
+      maxAsyncRequests: 30,
+      maxInitialRequests: 30,
+      automaticNameDelimiter: '.',
+      enforceSizeThreshold: 50000,
+      cacheGroups: {
+        defaultVendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true,
+        },
+      },
     },
   },
 };

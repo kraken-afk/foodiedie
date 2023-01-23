@@ -1,5 +1,5 @@
 import { LitElement, html, } from 'lit';
-import { PICTURE_MEDIUM_ID, REVIEW_ENDPOINT } from '@global/config';
+import { PICTURE_MEDIUM_ID, PICTURE_SMALL_ID, REVIEW_ENDPOINT } from '@global/config';
 import getRestaurant from '@utils/getRestaurant';
 import createLoader from '@utils/components/loader';
 import mapSvg from '@images/bx-map.svg';
@@ -8,6 +8,9 @@ import openLocalDb from '@utils/indexedDb';
 import swal from 'sweetalert';
 import CommentSection from './CommentSection';
 import '@utils/components/errorMessage';
+import '@utils/components/backButton';
+import LikeButton from './LikeButton';
+import ReviewForm from './ReviewForm';
 
 class DetailPage extends LitElement {
   static properties = {
@@ -163,7 +166,10 @@ class DetailPage extends LitElement {
         <p>${description}</p>
       </main>
       <figure class="detail__header__figure">
-        <img class="detail__header__figure__thumbnail" src="${PICTURE_MEDIUM_ID + pictureId}" alt="image of ${name}" />
+        <picture>
+          <source media="(max-width: 578)" srcset="${PICTURE_SMALL_ID + pictureId}" alt="image of ${name}"/>
+          <img class="detail__header__figure__thumbnail" src="${PICTURE_MEDIUM_ID + pictureId}" alt="image of ${name}" />
+        </picture>
         <span aria-label=${`rating: ${rating} star,`} class="detail__header__figure__rating">
           <img width="18" src=${starSvg} alt="" /> ${rating}
         </span>
@@ -178,25 +184,8 @@ class DetailPage extends LitElement {
     </div>
     <span class="reviews-title">Reviews</span>
     ${new CommentSection(this.commentSection).render()}
-    <form @submit=${this.submitHandler} action="POST" class="form-review">
-      <span class="form-title">Add review</span>
-        <div class="input-wrapper">
-          <input required type="text" id="name" placeholder="Your name.."/>
-        </div>
-        <div class="input-wrapper-textarea">
-          <textarea required placeholder="Review.." id="review" name="review" cols="50" rows="5"></textarea>
-        </div>
-        <button class="submit-btn">Submit</button>
-      </form>
-    <button @click=${this.favouriteClickHandler} data-isfav="0" id="favouriteBtn" aria-label="favourite button">
-      <svg xmlns='http://www.w3.org/2000/svg'
-        viewBox='0 0 24 24' fill='#000000'
-        width='24' height='24'>
-        <path
-          d="M20.205 4.791a5.938 5.938 0 0 0-4.209-1.754A5.906 5.906 0 0 0 12 4.595a5.904 5.904 0 0 0-3.996-1.558 5.942 5.942 0 0 0-4.213 1.758c-2.353 2.363-2.352 6.059.002 8.412L12 21.414l8.207-8.207c2.354-2.353 2.355-6.049-.002-8.416z">
-        </path>
-      </svg>
-    </button>
+    ${new ReviewForm(this.submitHandler).render()}
+    ${new LikeButton(this.favouriteClickHandler).render()}
     <back-button ></back-button>
     `;
   }

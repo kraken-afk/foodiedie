@@ -1,8 +1,4 @@
-import NotFound from '@components/404';
-import DetailComponent from '../components/DetailPage';
-import HomeComponent from '../components/HomePage';
-import FavouriteComponent from '../components/FavouritePage';
-import SearchPageComponent from '../components/SearchPage';
+import HomeComponent from '@components/HomePage';
 
 class RouteProxy {
   constructor() {
@@ -11,15 +7,25 @@ class RouteProxy {
   }
 
   pathHandler = {
-    notFound: () => new NotFound(),
-    default: () => new HomeComponent(),
-    detail: (path) => {
+    notFound: async () => {
+      const { default: NotFound} = await import('@components/404');
+      return new NotFound();
+    },
+    default: () => {
+      return new HomeComponent();
+    },
+    detail: async (path) => {
       const id = path.split(':')[1];
+      const { default: DetailComponent} = await import('@components/DetailPage');
       return new DetailComponent(id);
     },
-    favourite: () => new FavouriteComponent(),
-    searchPage: (path) => {
+    favourite: async () => {
+      const { default: FavouriteComponent} = await import('@components/FavouritePage');
+      return new FavouriteComponent();
+    },
+    searchPage: async (path) => {
       const value = path.split('?')[1].split('=')[1];
+      const { default: SearchPageComponent} = await import('@components/SearchPage');
       return new SearchPageComponent(value);
     },
   };

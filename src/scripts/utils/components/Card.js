@@ -26,17 +26,19 @@ export default class RestaurantCard extends LitElement {
       <div class="card" tabindex="0">
         <figure class="card__img">
           <img
-          srcset="${PICTURE_MEDIUM_ID + source} 2x"
+          width="300"
+          height="180"
+          srcset="${PICTURE_MEDIUM_ID + source} 1200"
           @click=${this.clickHandler}
           data-id="${id}" loading="lazy"
           draggable="false" src=${PICTURE_SMALL_ID + source}
           alt="${name} image," />
-          <span aria-label=${`rating: ${rating} star,`} class="card__rating"> <img width="18" src=${starSvg} alt="" /> ${rating}</span>
+          <span aria-label=${`rating: ${rating} star,`} class="card__rating"> <img width="18" height="18" src=${starSvg} alt="" /> ${rating}</span>
         </figure>
         <article class="card__description">
           <div class="card__header">
             <h3 class="truncate-one" title="${name}">${name}</h3>
-            <span aria-label=${`placed at ${city},`} class="card__city"> <img width="18" src=${mapSvg} alt="" /> ${city}</span>
+            <span aria-label=${`placed at ${city},`} class="card__city"> <img width="17" height="17" src=${mapSvg} alt="" /> ${city}</span>
           </div>
           <p class="truncate">${description}</p>
           <button @click=${this.clickHandler} data-id="${id}" class="card__button">read more...</button>

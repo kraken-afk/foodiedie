@@ -1,6 +1,7 @@
 import { LitElement } from 'lit';
 import theme from '@utils/theme';
 import Route from '@routes/route';
+import swalInit from '@utils/swalInit';
 import '@scss/template.scss';
 
 class RootComponent extends LitElement {
@@ -19,9 +20,10 @@ class RootComponent extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     theme.init();
+    swalInit();
 
-    Route.onchange(() => {
-      this.page = Route.getPage();
+    Route.onchange(async () => {
+      this.page = await Route.getPage();
     });
   }
 
