@@ -5,8 +5,7 @@ const theme = {
     if (!currentTheme) {
       this.setLocalTheme();
       this.init();
-    } else
-      document.body.className = currentTheme;
+    } else document.body.className = currentTheme;
   },
 
   setLocalTheme() {

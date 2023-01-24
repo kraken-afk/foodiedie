@@ -1,4 +1,4 @@
-import { LitElement, html, } from 'lit';
+import { LitElement, html } from 'lit';
 import { PICTURE_MEDIUM_ID, PICTURE_SMALL_ID, REVIEW_ENDPOINT } from '@global/config';
 import getRestaurant from '@utils/getRestaurant';
 import createLoader from '@utils/components/loader';
@@ -7,10 +7,11 @@ import starSvg from '@images/bxs-star.svg';
 import openLocalDb from '@utils/indexedDb';
 import swal from 'sweetalert';
 import CommentSection from './CommentSection';
-import '@utils/components/errorMessage';
-import '@utils/components/backButton';
 import LikeButton from './LikeButton';
 import ReviewForm from './ReviewForm';
+import favouriteClickHandler from './handlers/favouriteClickHandler';
+import '@utils/components/errorMessage';
+import '@utils/components/backButton';
 
 class DetailPage extends LitElement {
   static properties = {
@@ -77,19 +78,7 @@ class DetailPage extends LitElement {
   }
 
   async favouriteClickHandler() {
-    if (this.db === null) return;
-
-    const favBtn = document.getElementById('favouriteBtn');
-    const { restaurant } = this.data;
-    const { db } = this;
-
-    if (+favBtn.dataset.isfav) {
-      await db.remove(restaurant.id);
-      favBtn.dataset.isfav = 0;
-    } else {
-      await db.add(restaurant);
-      favBtn.dataset.isfav = 1;
-    }
+    favouriteClickHandler(this.db, this.data);
   }
 
   submitHandler(event) {

@@ -8,24 +8,22 @@ class RouteProxy {
 
   pathHandler = {
     notFound: async () => {
-      const { default: NotFound} = await import('@components/404');
+      const { default: NotFound } = await import('@components/404');
       return new NotFound();
     },
-    default: () => {
-      return new HomeComponent();
-    },
+    default: () => new HomeComponent(),
     detail: async (path) => {
       const id = path.split(':')[1];
-      const { default: DetailComponent} = await import('@components/DetailPage');
+      const { default: DetailComponent } = await import('@components/DetailPage');
       return new DetailComponent(id);
     },
     favourite: async () => {
-      const { default: FavouriteComponent} = await import('@components/FavouritePage');
+      const { default: FavouriteComponent } = await import('@components/FavouritePage');
       return new FavouriteComponent();
     },
     searchPage: async (path) => {
       const value = path.split('?')[1].split('=')[1];
-      const { default: SearchPageComponent} = await import('@components/SearchPage');
+      const { default: SearchPageComponent } = await import('@components/SearchPage');
       return new SearchPageComponent(value);
     },
   };
