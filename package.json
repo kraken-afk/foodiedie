@@ -10,7 +10,9 @@
     "build": "webpack --config webpack.prod.js",
     "lint": "eslint src/ --fix",
     "build-serve": "npm run build && http-server dist/ --port=9000",
-    "test": "web-test-runner --watch"
+    "test": "web-test-runner --watch",
+    "cy:run": "npx cypress run --browser chrome --env CYPRESS_VERIFY_TIMEOUT=60000",
+    "cy:open": "npx cypress open --env CYPRESS_VERIFY_TIMEOUT=60000"
   },
   "dependencies": {
     "lit": "^2.4.1",
@@ -27,9 +29,11 @@
     "asset-list-webpack-plugin": "^0.4.0",
     "babel-loader": "^8.2.5",
     "clean-webpack-plugin": "^4.0.0",
+    "codeceptjs": "^3.3.7",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.1",
     "css-minimizer-webpack-plugin": "^4.2.2",
+    "cypress": "^12.4.0",
     "eslint": "^8.31.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
