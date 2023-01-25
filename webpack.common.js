@@ -6,7 +6,6 @@ const AssetListWebpackPlugin = require('asset-list-webpack-plugin');
 const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
 const ImageminOptiPng = require('imagemin-optipng');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
   entry: {
@@ -74,11 +73,6 @@ module.exports = {
           progressive: true,
         }),
       ],
-    }),
-    new BundleAnalyzerPlugin({
-      analyzerMode: 'static',
-      openAnalyzer: false,
-      reportFilename: 'bundle_sizes.html',
     }),
   ],
   resolve: {
