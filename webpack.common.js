@@ -75,7 +75,11 @@ module.exports = {
         }),
       ],
     }),
-    new BundleAnalyzerPlugin(),
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'static',
+      openAnalyzer: false,
+      reportFilename: 'bundle_sizes.html',
+    }),
   ],
   resolve: {
     alias: {
