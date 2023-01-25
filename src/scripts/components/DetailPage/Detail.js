@@ -50,8 +50,13 @@ class DetailPage extends LitElement {
         const { id } = this.data.restaurant;
         const { db } = this;
         const favBtn = document.getElementById('favouriteBtn');
-        const result = await db.get(id) ? 1 : 0;
-        favBtn.dataset.isfav = result;
+
+        try {
+          const result = await db.get(id) ? 1 : 0;
+          favBtn.dataset.isfav = result;
+        } catch(err) {
+          return;
+        }
       });
     window.scrollTo({ top: 0 });
   }
